@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_golang_yt/app/colors/app_colors.dart';
 import 'package:flutter_golang_yt/features/home/widgets/button_widget.dart';
@@ -5,6 +6,7 @@ import 'package:flutter_golang_yt/features/shared/ui/base_scaffold.dart';
 
 // TODO: add gap package and replace SizedBox
 
+@RoutePage()
 class HomeView extends StatefulWidget {
   const HomeView({Key? key}) : super(key: key);
 
