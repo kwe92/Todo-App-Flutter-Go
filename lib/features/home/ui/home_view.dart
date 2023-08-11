@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_golang_yt/app/colors/app_colors.dart';
+import 'package:flutter_golang_yt/features/home/widgets/button_widget.dart';
 import 'package:flutter_golang_yt/features/shared/ui/base_scaffold.dart';
 
 class HomeView extends StatefulWidget {
@@ -19,11 +20,23 @@ class _HomeViewState extends State<HomeView> {
         height: double.maxFinite,
         width: double.maxFinite,
         decoration: _backgroundImage,
-        child: const Column(
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            _HomeViewTitle(),
+            const _HomeViewTitle(),
+            CustomButton(
+              onPressed: () {},
+              text: 'Add Task',
+              textColor: Colors.white,
+              buttonColor: AppColors.mainColor,
+            ),
+            CustomButton(
+              onPressed: () {},
+              text: 'View All',
+              buttonColor: Colors.white,
+              textColor: AppColors.mainColor,
+            )
           ],
         ),
       ),
