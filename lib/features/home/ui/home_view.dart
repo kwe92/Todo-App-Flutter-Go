@@ -3,6 +3,8 @@ import 'package:flutter_golang_yt/app/colors/app_colors.dart';
 import 'package:flutter_golang_yt/features/home/widgets/button_widget.dart';
 import 'package:flutter_golang_yt/features/shared/ui/base_scaffold.dart';
 
+// TODO: add gap package and replace SizedBox
+
 class HomeView extends StatefulWidget {
   const HomeView({Key? key}) : super(key: key);
 
@@ -16,7 +18,9 @@ class _HomeViewState extends State<HomeView> {
     return BasseScaffold(
       title: 'Home View',
       child: Container(
-        padding: const EdgeInsets.only(left: 20),
+        padding: const EdgeInsets.symmetric(
+          horizontal: 20,
+        ),
         height: double.maxFinite,
         width: double.maxFinite,
         decoration: _backgroundImage,
@@ -25,18 +29,24 @@ class _HomeViewState extends State<HomeView> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             const _HomeViewTitle(),
+            SizedBox(
+              height: MediaQuery.of(context).size.height / 2.5,
+            ),
             CustomButton(
               onPressed: () {},
               text: 'Add Task',
               textColor: Colors.white,
               buttonColor: AppColors.mainColor,
             ),
+            const SizedBox(
+              height: 18,
+            ),
             CustomButton(
               onPressed: () {},
               text: 'View All',
               buttonColor: Colors.white,
               textColor: AppColors.mainColor,
-            )
+            ),
           ],
         ),
       ),
