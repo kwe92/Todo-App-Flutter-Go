@@ -9,7 +9,10 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context) => const MaterialApp(
-        home: HomeView(),
+  Widget build(BuildContext context) => MaterialApp(
+        theme: ThemeData(
+          useMaterial3: true,
+        ),
+        home: const HomeView(),
       );
 }
