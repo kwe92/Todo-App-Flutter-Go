@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_golang_yt/features/add_task/ui/add_task_view_model.dart';
 import 'package:flutter_golang_yt/features/add_task/ui/widgets/add_task_text_form_field.dart';
+import 'package:flutter_golang_yt/features/home/widgets/button_widget.dart';
 import 'package:flutter_golang_yt/features/shared/ui/base_scaffold.dart';
 import 'package:provider/provider.dart';
 
@@ -17,13 +18,14 @@ class AddTaskView extends StatelessWidget {
     final taskDetailController = context.watch<AddTaskViewModel>().taskDetailController;
 
     return BasseScaffold(
+      showAppBar: true,
       title: 'Add Task View',
       child: Container(
         width: double.maxFinite,
         height: double.maxFinite,
         decoration: _backgroundImage,
         padding: EdgeInsets.only(
-          top: MediaQuery.of(context).size.height / 3,
+          top: MediaQuery.of(context).size.height / 3.5,
         ),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -36,10 +38,18 @@ class AddTaskView extends StatelessWidget {
               const SizedBox(
                 height: 24.0,
               ),
+              // TODO: I dont like how AddTaskTextForField is implemented
               AddTaskTextForField(
                 maxLines: 3,
                 controller: taskDetailController,
                 rounding: const Radius.circular(20),
+              ),
+              const SizedBox(
+                height: 24,
+              ),
+              CustomButton(
+                text: 'Add',
+                onPressed: () {},
               ),
             ],
           ),
