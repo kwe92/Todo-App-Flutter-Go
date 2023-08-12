@@ -36,32 +36,30 @@ class _HomeViewState extends State<HomeView> {
             SizedBox(
               height: MediaQuery.of(context).size.height / 2.5,
             ),
-            CustomButton(
-              // TODO: push to add task view
-              onPressed: () {
-                appRouter.push(
-                  const AddTaskRoute(),
-                );
-              },
-              text: 'Add Task',
-              textColor: Colors.white,
-              buttonColor: AppColors.mainColor,
-            ),
-            const SizedBox(
-              height: 18,
-            ),
-            CustomButton(
-              onPressed: () {},
-              text: 'View All',
-              buttonColor: Colors.white,
-              textColor: AppColors.mainColor,
-            ),
+            ..._buttons,
           ],
         ),
       ),
     );
   }
 }
+
+final List<Widget> _buttons = [
+  CustomButton(
+    text: 'Add Task',
+    onPressed: () {
+      appRouter.push(
+        const AddTaskRoute(),
+      );
+    },
+  ),
+  const SizedBox(height: 18),
+  CustomButton(
+    isSecondary: true,
+    text: 'View All',
+    onPressed: () {},
+  ),
+];
 
 /// [BoxDecoration] with a [DecorationImage].
 const _backgroundImage = BoxDecoration(
