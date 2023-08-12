@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_golang_yt/app/themes/theme.dart';
 import 'package:flutter_golang_yt/features/add_task/ui/add_task_view_model.dart';
 import 'package:flutter_golang_yt/features/shared/services/get_it.dart';
 import 'package:flutter_golang_yt/features/shared/services/services.dart';
@@ -21,8 +22,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) => MaterialApp.router(
         routerConfig: appRouter.config(),
-        theme: ThemeData(
-          useMaterial3: true,
-        ),
+        theme: AppTheme.getTheme(),
       );
 }
