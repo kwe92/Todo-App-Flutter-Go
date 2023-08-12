@@ -35,6 +35,7 @@ class _HomeViewState extends State<HomeView> {
               height: MediaQuery.of(context).size.height / 2.5,
             ),
             CustomButton(
+              // TODO: push to add task view
               onPressed: () {},
               text: 'Add Task',
               textColor: Colors.white,
