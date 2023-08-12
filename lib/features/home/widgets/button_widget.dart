@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_golang_yt/app/themes/theme.dart';
 
 class CustomButton extends StatelessWidget {
-  final VoidCallback onPressed;
   final String text;
+  final VoidCallback onPressed;
   final bool isSecondary;
 
   const CustomButton({
-    required this.onPressed,
     required this.text,
+    required this.onPressed,
     this.isSecondary = false,
     super.key,
   });
