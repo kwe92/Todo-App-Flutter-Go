@@ -1,6 +1,9 @@
 import 'dart:ui';
 
 class AppColors {
+  // ._() suffix to a Constructor Function
+  //   - a named constructor that can only be used within the class
+  //   - disables instantiation of a class without adding an abstract class modifier
   const AppColors._();
 
   static const mainColor = Color(0xFF202e59);

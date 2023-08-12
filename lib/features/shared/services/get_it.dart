@@ -8,3 +8,13 @@ void configureDependencies() {
     AppRouter(),
   );
 }
+
+// GetIt
+
+//   - a service locator that can register services as singletons
+
+// GetIt Service Registration
+
+//   - there must be some initializing configuration
+//     function to register your services
+//   - your configuration function must be called in main above runApp

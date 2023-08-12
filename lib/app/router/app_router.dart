@@ -14,3 +14,15 @@ class AppRouter extends $AppRouter {
         ),
       ];
 }
+
+// @AutoRouterConfig
+
+//   - an annotation that is used to identify your application router
+//   - you must @override the 'routes' getter
+
+// AutoRoute
+
+//   - can build an auto route instance for any existing classes annotated with @RoutePage
+//   - the first AutoRoute should be your initial route and should be identified as such
+//     my passing true as an argument to the initial property of AutoRoute
+
