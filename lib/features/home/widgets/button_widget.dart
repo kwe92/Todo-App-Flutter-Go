@@ -1,38 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_golang_yt/app/themes/theme.dart';
 
 class CustomButton extends StatelessWidget {
   final VoidCallback onPressed;
   final String text;
-  final Color buttonColor;
-  final Color textColor;
+  final bool isSecondary;
 
   const CustomButton({
     required this.onPressed,
     required this.text,
-    required this.buttonColor,
-    required this.textColor,
+    this.isSecondary = false,
     super.key,
   });
 
   @override
-  Widget build(BuildContext context) => SizedBox(
-        width: double.maxFinite,
-        height: MediaQuery.of(context).size.height / 14,
-        child: OutlinedButton(
-          onPressed: onPressed,
-          child: Text(
-            text,
-            style: TextStyle(
-              color: textColor,
-              fontSize: 20,
-            ),
-          ),
-          style: ButtonStyle(
-            backgroundColor: resolver(
-              (states) => buttonColor,
-            ),
-            side: resolver(
-              (states) => BorderSide.none,
+  Widget build(BuildContext context) => Theme(
+        data: isSecondary
+            ? Theme.of(context).copyWith(
+                outlinedButtonTheme: secondaryOutlinedButtonTheme,
+              )
+            : Theme.of(context),
+        child: SizedBox(
+          width: double.maxFinite,
+          height: MediaQuery.of(context).size.height / 14,
+          child: OutlinedButton(
+            onPressed: onPressed,
+            child: Text(
+              text,
             ),
           ),
         ),
@@ -40,16 +34,13 @@ class CustomButton extends StatelessWidget {
 }
 // ?----------------------What did you learn----------------------?
 
-// Expanding Widgets With Container or SizedBox
+// Expanding Widgets With Container or SizedBox (Constraints go down, Sizes go up, Parents set position)
 
 //   - passing the argument double.maxFinite to height or width will expand
 //     the containers child to fill all available space
 //   - like a granular way to use an Expanded widget
 //   - can be used instead of expanding multiple widgets
 
-// Dynamic styling: MediaQuery.of(context)
+// Dynamic styling: MediaQuery.of(context).size
 
 //   - you can style dynamically using the MediaQuery.of(context).size height or width
-
-/// utility function that makes calls to MaterialStateProperty.resolveWith shorter.
-MaterialStateProperty<T?>? resolver<T>(T? Function(Set<MaterialState> states) callback) => MaterialStateProperty.resolveWith(callback);
