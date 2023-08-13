@@ -8,9 +8,42 @@ class AppTheme {
     return ThemeData(
       useMaterial3: true,
       outlinedButtonTheme: primaryOutlinedButtonTheme,
+      inputDecorationTheme: singleLineInputDecorationTheme,
     );
   }
 }
+
+const _singleLineBorder = OutlineInputBorder(
+  borderSide: BorderSide.none,
+  borderRadius: BorderRadius.all(
+    Radius.circular(50),
+  ),
+);
+
+final _multiLineInputBorder = _singleLineBorder.copyWith(
+  borderRadius: const BorderRadius.all(
+    Radius.circular(20),
+  ),
+);
+
+const singleLineInputDecorationTheme = InputDecorationTheme(
+  contentPadding: EdgeInsets.symmetric(
+    horizontal: 28.0,
+    vertical: 25.0,
+  ),
+  // EdgeInsets.only(left: 28.0, top: 50.0,),
+  filled: true,
+  fillColor: AppColors.textInputGrey,
+  border: InputBorder.none,
+  outlineBorder: BorderSide.none,
+  enabledBorder: _singleLineBorder,
+  focusedBorder: _singleLineBorder,
+);
+
+final multiLineInputDecorationTheme = singleLineInputDecorationTheme.copyWith(
+  enabledBorder: _multiLineInputBorder,
+  focusedBorder: _multiLineInputBorder,
+);
 
 final primaryOutlinedButtonTheme = OutlinedButtonThemeData(
   style: blueButtonStyle,
