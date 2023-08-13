@@ -36,29 +36,31 @@ class AddTaskView extends StatelessWidget {
               // TODO: I dont like the spacing it looks off
               children: [
                 AddTaskTextForField(
+                  maxLines: 1,
                   controller: taskNameController,
-                  rounding: Radius.circular(MediaQuery.of(context).size.width / 2),
                 ),
                 const SizedBox(
                   height: 24.0,
                 ),
                 // TODO: I dont like how AddTaskTextForField is implemented
                 AddTaskTextForField(
-                  maxLines: 3,
+                  maxLines: 5,
                   controller: taskDetailController,
-                  rounding: const Radius.circular(20),
                 ),
                 const SizedBox(
-                  height: 24,
+                  height: 32,
                 ),
                 CustomButton(
                   text: 'Add',
-                  onPressed: () {},
+                  onPressed: () {
+                    context.read<AddTaskViewModel>().clearControllers();
+                  },
                 ),
               ],
             ),
           ),
         ),
+        // TODO: Make the Icon its own widget
         Container(
           // TODO: keep playing with the height
           height: MediaQuery.of(context).size.height / 12,
