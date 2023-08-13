@@ -9,14 +9,9 @@ import 'package:flutter_golang_yt/features/shared/ui/base_scaffold.dart';
 // TODO: add gap package and replace SizedBox
 
 @RoutePage()
-class HomeView extends StatefulWidget {
-  const HomeView({Key? key}) : super(key: key);
+class HomeView extends StatelessWidget {
+  const HomeView({super.key});
 
-  @override
-  State<HomeView> createState() => _HomeViewState();
-}
-
-class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     return BasseScaffold(
@@ -57,7 +52,11 @@ final List<Widget> _buttons = [
   CustomButton(
     isSecondary: true,
     text: 'View All',
-    onPressed: () {},
+    onPressed: () {
+      appRouter.push(
+        const AllTasksRoute(),
+      );
+    },
   ),
 ];
 
