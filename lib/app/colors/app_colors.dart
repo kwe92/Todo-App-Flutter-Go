@@ -11,4 +11,5 @@ class AppColors {
   static const smallTextColor = Color(0xFF2e3253);
   static const textHolder = Color(0xFFedf0f8);
   static const textGrey = Color(0xFFafb1b5);
+  static const textInputGrey = Color(0xFFeef0f7);
 }
