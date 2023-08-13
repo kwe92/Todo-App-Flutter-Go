@@ -9,8 +9,12 @@ import 'package:provider/provider.dart';
 void main() {
   configureDependencies();
   runApp(
-    ChangeNotifierProvider(
-      create: (context) => AddTaskViewModel(),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => AddTaskViewModel(),
+        ),
+      ],
       child: const MyApp(),
     ),
   );
