@@ -38,6 +38,7 @@ class AddTaskView extends StatelessWidget {
                 AddTaskTextForField(
                   maxLines: 1,
                   controller: taskNameController,
+                  hintText: 'Task Name',
                 ),
                 const SizedBox(
                   height: 24.0,
@@ -46,6 +47,7 @@ class AddTaskView extends StatelessWidget {
                 AddTaskTextForField(
                   maxLines: 5,
                   controller: taskDetailController,
+                  hintText: 'Task Details',
                 ),
                 const SizedBox(
                   height: 32,
