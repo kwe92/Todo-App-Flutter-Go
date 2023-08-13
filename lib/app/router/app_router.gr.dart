@@ -8,26 +8,34 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i3;
+import 'package:auto_route/auto_route.dart' as _i4;
 import 'package:flutter_golang_yt/features/add_task/ui/add_task_view.dart'
     as _i1;
-import 'package:flutter_golang_yt/features/home/ui/home_view.dart' as _i2;
+import 'package:flutter_golang_yt/features/home/ui/home_view.dart' as _i3;
+import 'package:flutter_golang_yt/features/view_all/ui/all_tasks_view.dart'
+    as _i2;
 
-abstract class $AppRouter extends _i3.RootStackRouter {
+abstract class $AppRouter extends _i4.RootStackRouter {
   $AppRouter({super.navigatorKey});
 
   @override
-  final Map<String, _i3.PageFactory> pagesMap = {
+  final Map<String, _i4.PageFactory> pagesMap = {
     AddTaskRoute.name: (routeData) {
-      return _i3.AutoRoutePage<dynamic>(
+      return _i4.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i1.AddTaskView(),
       );
     },
-    HomeRoute.name: (routeData) {
-      return _i3.AutoRoutePage<dynamic>(
+    AllTasksRoute.name: (routeData) {
+      return _i4.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i2.HomeView(),
+        child: const _i2.AllTasksView(),
+      );
+    },
+    HomeRoute.name: (routeData) {
+      return _i4.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i3.HomeView(),
       );
     },
   };
@@ -35,8 +43,8 @@ abstract class $AppRouter extends _i3.RootStackRouter {
 
 /// generated route for
 /// [_i1.AddTaskView]
-class AddTaskRoute extends _i3.PageRouteInfo<void> {
-  const AddTaskRoute({List<_i3.PageRouteInfo>? children})
+class AddTaskRoute extends _i4.PageRouteInfo<void> {
+  const AddTaskRoute({List<_i4.PageRouteInfo>? children})
       : super(
           AddTaskRoute.name,
           initialChildren: children,
@@ -44,13 +52,27 @@ class AddTaskRoute extends _i3.PageRouteInfo<void> {
 
   static const String name = 'AddTaskRoute';
 
-  static const _i3.PageInfo<void> page = _i3.PageInfo<void>(name);
+  static const _i4.PageInfo<void> page = _i4.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i2.HomeView]
-class HomeRoute extends _i3.PageRouteInfo<void> {
-  const HomeRoute({List<_i3.PageRouteInfo>? children})
+/// [_i2.AllTasksView]
+class AllTasksRoute extends _i4.PageRouteInfo<void> {
+  const AllTasksRoute({List<_i4.PageRouteInfo>? children})
+      : super(
+          AllTasksRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'AllTasksRoute';
+
+  static const _i4.PageInfo<void> page = _i4.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i3.HomeView]
+class HomeRoute extends _i4.PageRouteInfo<void> {
+  const HomeRoute({List<_i4.PageRouteInfo>? children})
       : super(
           HomeRoute.name,
           initialChildren: children,
@@ -58,5 +80,5 @@ class HomeRoute extends _i3.PageRouteInfo<void> {
 
   static const String name = 'HomeRoute';
 
-  static const _i3.PageInfo<void> page = _i3.PageInfo<void>(name);
+  static const _i4.PageInfo<void> page = _i4.PageInfo<void>(name);
 }

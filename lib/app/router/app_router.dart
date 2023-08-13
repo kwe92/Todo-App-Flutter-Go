@@ -1,6 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'app_router.gr.dart';
 
+// Command to refresh your routes:
+
+//   - you must have the build_runner package added as a dependecy
+//   - flutter packages pub run build_runner build
+
 @AutoRouterConfig(replaceInRouteName: 'View,Route')
 class AppRouter extends $AppRouter {
   @override
@@ -12,6 +17,9 @@ class AppRouter extends $AppRouter {
         AutoRoute(
           page: AddTaskRoute.page,
         ),
+        AutoRoute(
+          page: AllTasksRoute.page,
+        )
       ];
 }
 
