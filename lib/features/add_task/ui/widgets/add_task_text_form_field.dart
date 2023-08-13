@@ -1,26 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_golang_yt/app/themes/theme.dart';
 
 class AddTaskTextForField extends StatelessWidget {
   final TextEditingController controller;
   final int maxLines;
-  final Radius rounding;
   const AddTaskTextForField({
     required this.controller,
     this.maxLines = 1,
-    required this.rounding,
     super.key,
   });
 
   @override
-  Widget build(BuildContext context) => TextFormField(
-        maxLines: maxLines,
-        controller: controller,
-        decoration: InputDecoration(
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.all(
-              rounding,
-            ),
-          ),
+  Widget build(BuildContext context) => Theme(
+        data: maxLines == 1
+            ? Theme.of(context)
+            : Theme.of(context).copyWith(
+                inputDecorationTheme: multiLineInputDecorationTheme,
+              ),
+        child: TextFormField(
+          maxLines: maxLines,
+          controller: controller,
         ),
       );
 }
