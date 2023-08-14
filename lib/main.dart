@@ -6,7 +6,7 @@ import 'package:flutter_golang_yt/features/shared/services/services.dart';
 import 'package:flutter_golang_yt/features/view_all/ui/all_tasks_view_model.dart';
 import 'package:provider/provider.dart';
 
-// TODO: implement gitit service
+// TODO: maybe implement notification service for old created tasks
 void main() {
   configureDependencies();
   runApp(

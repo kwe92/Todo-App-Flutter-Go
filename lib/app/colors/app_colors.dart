@@ -13,8 +13,11 @@ class AppColors {
 
 // TODO: CLean up what you learned comments
 
-// What Your Learned
+// What Your Learned or what you want to review
 
   // ._() suffix to a Constructor Function
+  
   //   - a named constructor that can only be used within the class
   //   - disables instantiation of a class without adding an abstract class modifier
+  
+  // What is 0xFF?
