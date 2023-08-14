@@ -7,6 +7,7 @@ import 'package:flutter_golang_yt/features/shared/services/services.dart';
 import 'package:flutter_golang_yt/features/shared/ui/back_arrow_icon.dart';
 import 'package:flutter_golang_yt/features/shared/ui/base_scaffold.dart';
 import 'package:flutter_golang_yt/features/shared/utility/get_screen_size.dart';
+import 'package:flutter_golang_yt/features/view_all/ui/all_tasks_view_model.dart';
 import 'package:provider/provider.dart';
 
 // TODO: finish completing view
@@ -54,8 +55,18 @@ class AddTaskView extends StatelessWidget {
                 ),
                 CustomButton(
                   text: 'Add',
-                  onPressed: () {
-                    context.read<AddTaskViewModel>().clearControllers();
+                  onPressed:
+                      // TODO: add toast service snack bar to notify user the task has been added
+                      () {
+                    // TODO: arguments may need to be handled in a better way
+                    final addTaskModel = context.read<AddTaskViewModel>();
+                    final taskName = addTaskModel.taskNameController.text;
+                    final taskDetail = addTaskModel.taskDetailController.text;
+                    if (taskName.trim().isNotEmpty && taskDetail.trim().isNotEmpty) {
+                      print(taskName.trim().length);
+                      context.read<AllTasksViewModel>().addTask(taskName, taskDetail);
+                      addTaskModel.clearControllers();
+                    }
                   },
                 ),
               ],
