@@ -6,7 +6,7 @@ import 'package:flutter_golang_yt/app/themes/theme.dart';
 import 'package:flutter_golang_yt/declarations.dart';
 import 'package:flutter_golang_yt/features/home/widgets/button_widget.dart';
 import 'package:flutter_golang_yt/features/shared/services/services.dart';
-import 'package:flutter_golang_yt/features/shared/toast_service.dart';
+import 'package:flutter_golang_yt/features/shared/services/toast_service.dart';
 import 'package:flutter_golang_yt/features/shared/ui/back_arrow_icon.dart';
 import 'package:flutter_golang_yt/features/shared/ui/base_scaffold.dart';
 import 'package:flutter_golang_yt/features/shared/utility/get_screen_size.dart';
