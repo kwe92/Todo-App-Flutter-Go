@@ -1,12 +1,7 @@
 // ignore_for_file: prefer_final_fields
 
 import 'package:flutter/material.dart';
-
-typedef Task = ({
-  int id,
-  String taskName,
-  String taskDetails,
-});
+import 'package:flutter_golang_yt/declarations.dart';
 
 class AllTasksViewModel extends ChangeNotifier {
   List<Task> _tasks = [
