@@ -3,7 +3,8 @@ import 'package:flutter_golang_yt/app/colors/app_colors.dart';
 import 'package:flutter_golang_yt/features/shared/ui/clickable_icon.dart';
 
 class AddIcon extends StatelessWidget {
-  const AddIcon({super.key});
+  final VoidCallback onTap;
+  const AddIcon({required this.onTap, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,7 @@ class AddIcon extends StatelessWidget {
         ),
       ),
       child: ClickableIcon(
-        onTap: () {},
+        onTap: onTap,
         iconData: Icons.add,
         size: 16,
         color: Colors.white,
