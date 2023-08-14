@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_golang_yt/app/colors/app_colors.dart';
+import 'package:flutter_golang_yt/app/themes/theme.dart';
 import 'package:flutter_golang_yt/declarations.dart';
 import 'package:flutter_golang_yt/features/shared/services/services.dart';
 import 'package:flutter_golang_yt/features/shared/ui/back_arrow_icon.dart';
@@ -17,11 +18,23 @@ class AllTasksView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<_TaskWidget> taskList = context
-        .read<AllTasksViewModel>()
-        .tasks
+    final allTasksModel = context.read<AllTasksViewModel>();
+    final List<Widget> taskList = allTasksModel.tasks
         .map(
-          (task) => _TaskWidget(task: task),
+          (task) => Dismissible(
+            key: ObjectKey(task.id),
+            child: _TaskWidget(task: task),
+            confirmDismiss: (direction) async {
+              debugPrint(direction.name);
+              debugPrint('${task.id}');
+              return false;
+            },
+            onDismissed: (direction) {
+              if (direction.name == 'endToStart') {}
+            },
+            background: Container(color: Colors.greenAccent),
+            secondaryBackground: Container(color: Colors.redAccent),
+          ),
         )
         .toList();
 
@@ -30,12 +43,9 @@ class AllTasksView extends StatelessWidget {
       child: Column(
         children: [
           const _TopSecton(),
-          const _MiddleSection(),
-
-          // Nesting ListView in Column Widget
-
-          //   - if you need to next a ListView within a Column widget you need to wrap the ListView with a Flexible Widget
-
+          _MiddleSection(
+            taskCount: allTasksModel.tasks.length,
+          ),
           Flexible(
             child: ListView(
               children: taskList,
@@ -74,26 +84,34 @@ class _TopSecton extends StatelessWidget {
 }
 
 class _MiddleSection extends StatelessWidget {
-  const _MiddleSection({super.key});
+  final int taskCount;
+
+  const _MiddleSection({
+    required this.taskCount,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.only(left: 12.0, top: 6.0, right: 12.0),
-      child: ColoredBox(
-        color: Colors.orange,
-        child: Row(
-          children: [
-            HomeIcon(),
-            SizedBox(width: 6),
-            AddIcon(),
-            //? use Spacer instead of wrapping sections of the Row in Containers and spacing evenly
-            Spacer(),
-            Icon(
-              Icons.file_copy,
-            )
-          ],
-        ),
+    return Padding(
+      padding: const EdgeInsets.only(
+        left: 12.0,
+        top: 6.0,
+        right: 12.0,
+      ),
+      child: Row(
+        children: [
+          const HomeIcon(),
+          const SizedBox(width: 6),
+          const AddIcon(),
+          const Spacer(),
+          const Icon(Icons.file_copy),
+          const SizedBox(width: 6),
+          Text(
+            '$taskCount',
+            style: mediumTextStyle,
+          ),
+        ],
       ),
     );
   }
@@ -109,20 +127,42 @@ class _TaskWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(top: 12.0),
       width: double.maxFinite,
       height: ScreenSize.getHeight(context) / 14,
-      color: AppColors.textInputGrey,
+      margin: const EdgeInsets.only(
+        left: 12.0,
+        top: 17.0,
+        right: 12.0,
+      ),
+      decoration: const BoxDecoration(
+        color: AppColors.grey0,
+        borderRadius: BorderRadius.all(
+          Radius.circular(12.5),
+        ),
+      ),
       child: Center(
         child: Text(
           task.taskName,
           textAlign: TextAlign.center,
-          style: const TextStyle(
-            color: Colors.blueGrey,
-            fontSize: 20,
-          ),
+          style: mediumTextStyle,
         ),
       ),
     );
   }
 }
+
+// TODO: Review module for what you have learned
+
+// What you learned or what you want to review
+
+//   - Dismissible Widget
+//       - confirmDissmiss property
+//       - onDissmiss property
+//       - background property 
+//       - onBackground property
+//   - Flexible Widget: Nesting ListView in Column Widget
+//   - context.read
+//   - Spacer Widget
+//       - use Spacer instead of wrapping sections of the Row in Containers and spacing evenly
+// DecorationImage(
+//          fit: BoxFit.cover, image: '...')
