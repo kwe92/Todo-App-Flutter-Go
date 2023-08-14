@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_golang_yt/app/themes/theme.dart';
+import 'package:flutter_golang_yt/features/shared/utility/get_screen_size.dart';
 
 class CustomButton extends StatelessWidget {
   final String text;
@@ -22,7 +23,7 @@ class CustomButton extends StatelessWidget {
             : Theme.of(context),
         child: SizedBox(
           width: double.maxFinite,
-          height: MediaQuery.of(context).size.height / 14,
+          height: ScreenSize.getHeight(context) / 14,
           child: OutlinedButton(
             onPressed: onPressed,
             child: Text(

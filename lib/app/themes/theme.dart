@@ -9,6 +9,9 @@ class AppTheme {
       useMaterial3: true,
       outlinedButtonTheme: primaryOutlinedButtonTheme,
       inputDecorationTheme: singleLineInputDecorationTheme,
+
+      scaffoldBackgroundColor:
+          Colors.white, // the base background color of the scaffold is off-white if you look hard enough you can see this
     );
   }
 }
@@ -33,7 +36,7 @@ const singleLineInputDecorationTheme = InputDecorationTheme(
   ),
   // EdgeInsets.only(left: 28.0, top: 50.0,),
   filled: true,
-  fillColor: AppColors.textInputGrey,
+  fillColor: AppColors.grey0,
   border: InputBorder.none,
   outlineBorder: BorderSide.none,
   enabledBorder: _singleLineBorder,
@@ -53,16 +56,20 @@ final secondaryOutlinedButtonTheme = OutlinedButtonThemeData(
   style: whiteButtonStyle,
 );
 
-const baseButtonTextStyle = TextStyle(
+const baseTextStyle = TextStyle(
   fontSize: 20,
   fontWeight: FontWeight.w500,
 );
 
-final blueButtonTextStyle = baseButtonTextStyle.copyWith(
+final mediumTextStyle = baseTextStyle.copyWith(
+  color: Colors.blueGrey,
+);
+
+final blueButtonTextStyle = baseTextStyle.copyWith(
   foreground: Paint()..color = Colors.white,
 );
 
-final whiteButtonTextStyle = baseButtonTextStyle.copyWith(
+final whiteButtonTextStyle = baseTextStyle.copyWith(
   foreground: Paint()..color = AppColors.smallTextColor,
 );
 
