@@ -4,7 +4,9 @@ import 'package:flutter_golang_yt/app/colors/app_colors.dart';
 import 'package:flutter_golang_yt/app/router/app_router.gr.dart';
 import 'package:flutter_golang_yt/app/themes/theme.dart';
 import 'package:flutter_golang_yt/declarations.dart';
+import 'package:flutter_golang_yt/features/home/widgets/button_widget.dart';
 import 'package:flutter_golang_yt/features/shared/services/services.dart';
+import 'package:flutter_golang_yt/features/shared/toast_service.dart';
 import 'package:flutter_golang_yt/features/shared/ui/back_arrow_icon.dart';
 import 'package:flutter_golang_yt/features/shared/ui/base_scaffold.dart';
 import 'package:flutter_golang_yt/features/shared/utility/get_screen_size.dart';
@@ -30,16 +32,44 @@ class AllTasksView extends StatelessWidget {
             confirmDismiss: (direction) async {
               debugPrint(direction.name);
               debugPrint('${task.id}');
-              return direction.name == 'endToStart' ? true : false;
+              if (direction == DismissDirection.endToStart) {
+                // added delay before the item is deleted
+                return Future.delayed(
+                  const Duration(seconds: 1),
+                  () => true,
+                );
+              } else {
+                ToastService.showSnackBar(
+                  context: context,
+                  height: 400,
+                  backgroundColor: Colors.grey,
+                  content: Center(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        CustomButton(text: 'View', onPressed: () {}),
+                        const SizedBox(height: 15.0),
+                        CustomButton(text: 'Edit', onPressed: () {}),
+                      ],
+                    ),
+                  ),
+                );
+                return false;
+              }
             },
+
             onDismissed: (direction) {
               // TODO: Add a task deleted toast service snack bar?
               // TODO: handle startTOend dismiss condition | edit or view snack bar options
-              if (direction.name == 'endToStart') {
+              if (direction == DismissDirection.endToStart) {
                 print('TASK DELETED');
                 allTasksModel.removeTask(task.id);
               }
+              if (direction == DismissDirection.startToEnd) {
+                print('EDIT MODE');
+              }
             },
+
             // TODO: Refactor background and secondaryBackground containers to keep code D.R.Y
             background: Container(
               margin: const EdgeInsets.only(top: 17),
@@ -178,9 +208,10 @@ class _TaskWidget extends StatelessWidget {
       ),
       decoration: const BoxDecoration(
         color: AppColors.grey0,
-        borderRadius: BorderRadius.all(
-          Radius.circular(12.5),
-        ),
+        // ? remove maybe??
+        // borderRadius: BorderRadius.all(
+        //   Radius.circular(12.5),
+        // ),
       ),
       child: Center(
         child: Text(
