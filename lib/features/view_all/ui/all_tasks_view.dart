@@ -41,15 +41,20 @@ class AllTasksView extends StatelessWidget {
               } else {
                 ToastService.showSnackBar(
                   context: context,
-                  height: 400,
-                  backgroundColor: Colors.grey,
+                  height: ScreenSize.getHeight(context) / 3,
+                  // TODO: add to app colors
+                  backgroundColor: const Color(0xFF2e3253).withOpacity(0.325),
                   content: Center(
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         CustomButton(text: 'View', onPressed: () {}),
-                        const SizedBox(height: 15.0),
-                        CustomButton(text: 'Edit', onPressed: () {}),
+                        const SizedBox(height: 20.0),
+                        CustomButton(
+                          text: 'Edit',
+                          onPressed: () {},
+                          isSecondary: true,
+                        ),
                       ],
                     ),
                   ),
