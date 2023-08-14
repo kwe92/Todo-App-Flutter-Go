@@ -6,6 +6,7 @@ import 'package:flutter_golang_yt/features/home/widgets/button_widget.dart';
 import 'package:flutter_golang_yt/features/shared/services/services.dart';
 import 'package:flutter_golang_yt/features/shared/ui/back_arrow_icon.dart';
 import 'package:flutter_golang_yt/features/shared/ui/base_scaffold.dart';
+import 'package:flutter_golang_yt/features/shared/utility/get_screen_size.dart';
 import 'package:provider/provider.dart';
 
 // TODO: finish completing view
@@ -29,7 +30,7 @@ class AddTaskView extends StatelessWidget {
           // TODO: figure out if we can make the image longer or not
           decoration: _backgroundImage,
           padding: EdgeInsets.only(
-            top: MediaQuery.of(context).size.height / 3.5,
+            top: ScreenSize.getHeight(context) / 3.5,
           ),
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -63,7 +64,7 @@ class AddTaskView extends StatelessWidget {
         ),
         Container(
           //TODO: create utility function to shorten calls to MediaQuery.of(context)
-          height: MediaQuery.of(context).size.height / 12,
+          height: ScreenSize.getHeight(context) / 12,
           padding: const EdgeInsets.only(left: 12),
           child: BackArrowIcon(
             onTap: () => appRouter.pop(),

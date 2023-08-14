@@ -5,6 +5,7 @@ import 'package:flutter_golang_yt/app/router/app_router.gr.dart';
 import 'package:flutter_golang_yt/features/home/widgets/button_widget.dart';
 import 'package:flutter_golang_yt/features/shared/services/services.dart';
 import 'package:flutter_golang_yt/features/shared/ui/base_scaffold.dart';
+import 'package:flutter_golang_yt/features/shared/utility/get_screen_size.dart';
 
 // TODO: add gap package and replace SizedBox
 
@@ -29,7 +30,7 @@ class HomeView extends StatelessWidget {
           children: <Widget>[
             const _HomeViewTitle(),
             SizedBox(
-              height: MediaQuery.of(context).size.height / 2.5,
+              height: ScreenSize.getHeight(context) / 2.5,
             ),
             ..._buttons,
           ],
