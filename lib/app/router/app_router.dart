@@ -10,15 +10,18 @@ import 'app_router.gr.dart';
 class AppRouter extends $AppRouter {
   @override
   List<AutoRoute> get routes => [
-        AutoRoute(
+        CustomRoute(
           page: HomeRoute.page,
           initial: true,
+          transitionsBuilder: TransitionsBuilders.slideBottom,
         ),
-        AutoRoute(
+        CustomRoute(
           page: AddTaskRoute.page,
+          transitionsBuilder: TransitionsBuilders.slideBottom,
         ),
-        AutoRoute(
+        CustomRoute(
           page: AllTasksRoute.page,
+          transitionsBuilder: TransitionsBuilders.slideTop,
         )
       ];
 }
@@ -34,3 +37,4 @@ class AppRouter extends $AppRouter {
 //   - the first AutoRoute should be your initial route and should be identified as such
 //     my passing true as an argument to the initial property of AutoRoute
 
+// CustomRoute && transitionsBuilder property
