@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_golang_yt/app/colors/app_colors.dart';
+import 'package:flutter_golang_yt/app/router/app_router.gr.dart';
 import 'package:flutter_golang_yt/app/themes/theme.dart';
 import 'package:flutter_golang_yt/declarations.dart';
 import 'package:flutter_golang_yt/features/shared/services/services.dart';
@@ -18,22 +19,59 @@ class AllTasksView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final allTasksModel = context.read<AllTasksViewModel>();
-    final List<Widget> taskList = allTasksModel.tasks
+    final allTasksModel = context.watch<AllTasksViewModel>();
+    final List<Widget> taskList = allTasksModel.taskList
         .map(
-          (task) => Dismissible(
+          (task) =>
+              // TODO: the Dismissible instantiation should be its own implemented class
+              Dismissible(
             key: ObjectKey(task.id),
             child: _TaskWidget(task: task),
             confirmDismiss: (direction) async {
               debugPrint(direction.name);
               debugPrint('${task.id}');
-              return false;
+              return direction.name == 'endToStart' ? true : false;
             },
             onDismissed: (direction) {
-              if (direction.name == 'endToStart') {}
+              // TODO: Add a task deleted toast service snack bar?
+              // TODO: handle startTOend dismiss condition | edit or view snack bar options
+              if (direction.name == 'endToStart') {
+                print('TASK DELETED');
+                allTasksModel.removeTask(task.id);
+              }
             },
-            background: Container(color: Colors.greenAccent),
-            secondaryBackground: Container(color: Colors.redAccent),
+            // TODO: Refactor background and secondaryBackground containers to keep code D.R.Y
+            background: Container(
+              margin: const EdgeInsets.only(top: 17),
+              padding: const EdgeInsets.only(left: 25),
+              alignment: Alignment.centerLeft,
+              decoration: const BoxDecoration(
+                color: Colors.greenAccent,
+                // borderRadius: BorderRadius.all(
+                //   Radius.circular(12.5),
+                // ),
+              ),
+              child: const Icon(
+                Icons.edit,
+                color: AppColors.mainColor,
+              ),
+            ),
+            // TODO: Refactor
+            secondaryBackground: Container(
+              margin: const EdgeInsets.only(top: 17),
+              padding: const EdgeInsets.only(right: 25),
+              alignment: Alignment.centerRight,
+              decoration: const BoxDecoration(
+                color: Colors.redAccent,
+                // borderRadius: BorderRadius.all(
+                //   Radius.circular(12.5),
+                // ),
+              ),
+              child: const Icon(
+                Icons.delete_forever,
+                color: AppColors.mainColor,
+              ),
+            ),
           ),
         )
         .toList();
@@ -44,7 +82,7 @@ class AllTasksView extends StatelessWidget {
         children: [
           const _TopSecton(),
           _MiddleSection(
-            taskCount: allTasksModel.tasks.length,
+            taskCount: allTasksModel.taskList.length,
           ),
           Flexible(
             child: ListView(
@@ -103,7 +141,11 @@ class _MiddleSection extends StatelessWidget {
         children: [
           const HomeIcon(),
           const SizedBox(width: 6),
-          const AddIcon(),
+          AddIcon(
+            onTap: () => appRouter.push(
+              const AddTaskRoute(),
+            ),
+          ),
           const Spacer(),
           const Icon(Icons.file_copy),
           const SizedBox(width: 6),
@@ -156,13 +198,23 @@ class _TaskWidget extends StatelessWidget {
 // What you learned or what you want to review
 
 //   - Dismissible Widget
+
 //       - confirmDissmiss property
 //       - onDissmiss property
 //       - background property 
 //       - onBackground property
+//       - ObjectKey property
+
 //   - Flexible Widget: Nesting ListView in Column Widget
+
 //   - context.read
+
+//   - context.watch
+
 //   - Spacer Widget
 //       - use Spacer instead of wrapping sections of the Row in Containers and spacing evenly
+
 // DecorationImage(
 //          fit: BoxFit.cover, image: '...')
+
+// Container alignment property | when you do not see a child you expect to see and the alignment isnt set that is most likely the issue
