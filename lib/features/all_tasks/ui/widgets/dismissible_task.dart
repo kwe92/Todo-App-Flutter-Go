@@ -33,6 +33,7 @@ class DismissibleTask extends StatelessWidget {
             height: ScreenSize.getHeight(context) / 3,
             // TODO: add to app colors
             backgroundColor: AppColors.grey2,
+            duration: const Duration(seconds: 1),
             content: Center(
               child: Column(
                 mainAxisSize: MainAxisSize.min,

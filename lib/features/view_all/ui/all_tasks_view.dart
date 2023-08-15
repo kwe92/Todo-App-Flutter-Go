@@ -24,9 +24,7 @@ class AllTasksView extends StatelessWidget {
     final allTasksModel = context.watch<AllTasksViewModel>();
     final List<Widget> taskList = allTasksModel.taskList
         .map(
-          (task) =>
-              // TODO: the Dismissible instantiation should be its own implemented class
-              Dismissible(
+          (task) => Dismissible(
             key: ObjectKey(task.id),
             child: _TaskWidget(task: task),
             confirmDismiss: (direction) async {
@@ -43,7 +41,8 @@ class AllTasksView extends StatelessWidget {
                   context: context,
                   height: ScreenSize.getHeight(context) / 3,
                   // TODO: add to app colors
-                  backgroundColor: const Color(0xFF2e3253).withOpacity(0.325),
+                  backgroundColor: AppColors.grey2,
+                  duration: const Duration(seconds: 1),
                   content: Center(
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
