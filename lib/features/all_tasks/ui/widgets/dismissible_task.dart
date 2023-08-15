@@ -31,9 +31,8 @@ class DismissibleTask extends StatelessWidget {
           ToastService.showSnackBar(
             context: context,
             height: ScreenSize.getHeight(context) / 3,
-            // TODO: add to app colors
             backgroundColor: AppColors.grey2,
-            duration: const Duration(seconds: 1),
+            duration: const Duration(seconds: 3),
             content: Center(
               child: Column(
                 mainAxisSize: MainAxisSize.min,
