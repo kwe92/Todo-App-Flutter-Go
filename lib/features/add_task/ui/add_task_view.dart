@@ -7,7 +7,7 @@ import 'package:flutter_golang_yt/features/shared/services/services.dart';
 import 'package:flutter_golang_yt/features/shared/ui/back_arrow_icon.dart';
 import 'package:flutter_golang_yt/features/shared/ui/base_scaffold.dart';
 import 'package:flutter_golang_yt/features/shared/utility/get_screen_size.dart';
-import 'package:flutter_golang_yt/features/view_all/ui/all_tasks_view_model.dart';
+import 'package:flutter_golang_yt/features/all_tasks/ui/all_tasks_view_model.dart';
 import 'package:provider/provider.dart';
 
 // TODO: finish completing view
