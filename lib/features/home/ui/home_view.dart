@@ -110,3 +110,8 @@ class _HomeViewTitle extends StatelessWidget {
 //   - to have multiple lines you can pass one or more TextSpan widgets
 //     to the 'children' property
 
+
+// Container Background Image
+// 
+// DecorationImage(
+//          fit: BoxFit.cover, image: '...')

@@ -28,3 +28,11 @@ class AddIcon extends StatelessWidget {
     );
   }
 }
+
+// What You Learned | what to Review
+
+// Not Seeing Child of Container's
+
+//   - when you do not see a child you expect to see 
+//    and the alignment isnt set
+//    that is most likely the issue

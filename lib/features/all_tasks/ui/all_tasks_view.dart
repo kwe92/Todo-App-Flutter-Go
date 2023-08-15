@@ -42,21 +42,18 @@ class AllTasksView extends StatelessWidget {
 }
 
 
-// TODO: Review module for what you have learned
+// What You Learned | what to Review
 
-// What you learned or what you want to review
+// Nesting ListView in Column Widget
 
-//   - Flexible Widget: Nesting ListView in Column Widget
+//   - wrap a ListView widget with a Flexible Widget if you want
+//     the Widget to be a child of a Column or Row Widget
 
-//   - context.watch
+
+// Observing State Without Consumer Widgets
+
+//   - Instantiating Consumer Widgets can be expensive
+//   - to avoid expensive objects to watch state changes
+//   - instead you can use context.watch<ChangeNotifierSubClass>().statefulPropery
 
 
-// DecorationImage(
-//          fit: BoxFit.cover, image: '...')
-
-// Container alignment property | when you do not see a child you expect to see and the alignment isnt set that is most likely the issue
-
-// What you learned or what you want to review
-
-//   - Spacer Widget
-//       - use Spacer instead of wrapping sections of the Row in Containers and spacing evenly
