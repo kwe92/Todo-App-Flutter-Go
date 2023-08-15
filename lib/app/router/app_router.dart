@@ -29,12 +29,19 @@ class AppRouter extends $AppRouter {
 // @AutoRouterConfig
 
 //   - an annotation that is used to identify your application router
-//   - you must @override the 'routes' getter
+//   - you must @override the 'routes' getter with a list of AutoRoute's
 
 // AutoRoute
 
 //   - can build an auto route instance for any existing classes annotated with @RoutePage
 //   - the first AutoRoute should be your initial route and should be identified as such
-//     my passing true as an argument to the initial property of AutoRoute
+//     by passing true as an argument to the initial property of AutoRoute
 
-// CustomRoute && transitionsBuilder property
+// CustomRoute
+
+//   - a sub-type of AutoRoute that has some additional properties like transitionBuilder
+
+// transitionsBuilder property
+
+// - a property of CustomRoute that specifies a transition animation
+//   for the CustomRoute's page

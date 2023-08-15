@@ -9,9 +9,8 @@ class AppTheme {
       useMaterial3: true,
       outlinedButtonTheme: primaryOutlinedButtonTheme,
       inputDecorationTheme: singleLineInputDecorationTheme,
-
-      scaffoldBackgroundColor:
-          Colors.white, // the base background color of the scaffold is off-white if you look hard enough you can see this
+// the base background color of the Scaffold is off-white if you look hard enough you can see this
+      scaffoldBackgroundColor: Colors.white,
     );
   }
 }

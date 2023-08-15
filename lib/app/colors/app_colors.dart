@@ -15,13 +15,19 @@ class AppColors {
   static final grey2 = const Color(0xFF2e3253).withOpacity(0.325);
 }
 
-// TODO: Clean up what you learned comments
 
 // What Your Learned or what you want to review
 
-  // ._() suffix to a Constructor Function
+  // ._() Named Constructor
+
+  //   - a private named constructor
+  //   - that can only be used within the class
+  //   - removes the ability for a class to be instantiated
+  //     without adding an abstract modifier as a prefix
   
-  //   - a named constructor that can only be used within the class
-  //   - disables instantiation of a class without adding an abstract class modifier
   
   // What is 0xFF?
+
+  //   - the hex representation of #
+  //   - required as a prefix to hex color values
+  //     that are passed to the Color API
