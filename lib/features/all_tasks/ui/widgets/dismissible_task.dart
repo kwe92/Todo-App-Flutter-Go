@@ -3,7 +3,7 @@ import 'package:flutter_golang_yt/app/colors/app_colors.dart';
 import 'package:flutter_golang_yt/declarations.dart';
 import 'package:flutter_golang_yt/features/all_tasks/ui/all_tasks_view_model.dart';
 import 'package:flutter_golang_yt/features/all_tasks/ui/widgets/task_widget.dart';
-import 'package:flutter_golang_yt/features/home/widgets/button_widget.dart';
+import 'package:flutter_golang_yt/features/shared/ui/button_widget.dart';
 import 'package:flutter_golang_yt/features/shared/services/toast_service.dart';
 import 'package:flutter_golang_yt/features/shared/utility/get_screen_size.dart';
 import 'package:provider/provider.dart';
