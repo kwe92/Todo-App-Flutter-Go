@@ -23,10 +23,6 @@ class TaskWidget extends StatelessWidget {
       ),
       decoration: const BoxDecoration(
         color: AppColors.grey0,
-        // ? remove maybe??
-        // borderRadius: BorderRadius.all(
-        //   Radius.circular(12.5),
-        // ),
       ),
       child: Center(
         child: Text(

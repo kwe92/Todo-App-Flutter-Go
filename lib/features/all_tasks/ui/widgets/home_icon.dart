@@ -9,7 +9,9 @@ class HomeIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClickableIcon(
-      onTap: () => appRouter.popAndPush(const HomeRoute()),
+      onTap: () => appRouter.popAndPush(
+        const HomeRoute(),
+      ),
       iconData: Icons.home,
     );
   }
