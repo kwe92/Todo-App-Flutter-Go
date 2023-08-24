@@ -5,6 +5,7 @@ class AddTaskTextFormField extends StatelessWidget {
   final TextEditingController controller;
   final String hintText;
   final int maxLines;
+
   const AddTaskTextFormField({
     required this.controller,
     required this.hintText,
@@ -29,17 +30,21 @@ class AddTaskTextFormField extends StatelessWidget {
 
 // Dynamic Theming
 
-//   - Wrapping a widget with a Theme Widget then condotionally
-//     changing the argument to the 'data' property
-//     predicated on some condition allows you to dynamically theme that Widget
-//     with Theme.of(context).copyWith() by passing the properties you want to change
+//   - You can dynamically theme a widget anywhere in your widget tree
+//   - by Wrapping athe widget with a Theme Widget
+//     then condotionally changing the argument to the 'data' property
+//     predicated on some condition using Theme.of(context) for default theming
+//     and Theme.of(context).copyWith() to change explicit parts of the Theme for
+//     that widget
 
 // Input Decoration
 
-//   - The borders, labels, icons, and styles for a TextFormField
-//   - passed as an argument to the decoration property 
+//   - TextForm field styling
+//   - passed as an argument to the decoration property
+//     of a TextFormField 
  
 // Multi-line TextFormField
 
-//   - if you want to have a TExtFormField with multiple lines then you can
-//     pass an integer to the maxLines property
+//   - pass an integer to the `maxLines` property specifing
+//     the number of lines you want the TextFormField to have
+
