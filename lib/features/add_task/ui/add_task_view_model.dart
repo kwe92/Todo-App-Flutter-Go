@@ -9,6 +9,11 @@ class AddTaskViewModel extends ChangeNotifier {
   TextEditingController get taskNameController => _taskNameController;
   TextEditingController get taskDetailController => _taskDetailController;
 
+  List<TextEditingController> getAllControllers() {
+    final controllers = <TextEditingController>[taskNameController, taskDetailController];
+    return controllers;
+  }
+
   void clearControllers() {
     taskNameController.clear();
     taskDetailController.clear();
@@ -18,13 +23,16 @@ class AddTaskViewModel extends ChangeNotifier {
 
 // ChangeNotifier
 
-//   - a simple and powerful way to manage state when used with Providers
-//   - can be inherited or mixed in to provide your class with a notification API
-//   - Listeners are added in constant-time O(1) and removed in linear-time O(n)
+//   - a simple and powerful way to manage state
+//     used in conjunction with the Provider package
+//   - CnageNotifier can be inherited or mixed into as class
+//     providing a notification API
+//   - Listeners are added in constant-time O(1)
+//     removed in linear-time O(n)
 
 // notifyListeners
 
 //   - calls all registered listeners (clients)
-//     that are watching an object
-//     should be invoked at the end of a function
-//     that modifies a member variable of a model (ChangeNotifier sub-class)
+//     that are watching or Consuming an object
+//     should be invoked at the end of a function if the state is changed
+//     within a ChangeNotifier
