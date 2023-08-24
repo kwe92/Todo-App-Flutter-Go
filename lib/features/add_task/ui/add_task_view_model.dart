@@ -14,6 +14,8 @@ class AddTaskViewModel extends ChangeNotifier {
     return controllers;
   }
 
+  bool isNotEmpty() => taskNameController.text.trim().isNotEmpty && taskDetailController.text.trim().isNotEmpty ? true : false;
+
   void clearControllers() {
     taskNameController.clear();
     taskDetailController.clear();
