@@ -13,10 +13,10 @@ class AllTasksView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final allTasksModel = context.watch<AllTasksViewModel>();
+    final observedTaskList = context.watch<AllTasksViewModel>().taskList;
 
     final taskList = <Widget>[
-      ...allTasksModel.taskList
+      ...observedTaskList
           .map(
             (task) => DismissibleTask(task: task),
           )
@@ -28,7 +28,7 @@ class AllTasksView extends StatelessWidget {
         children: [
           const TopSecton(),
           MiddleSection(
-            taskCount: allTasksModel.taskList.length,
+            taskCount: observedTaskList.length,
           ),
           Flexible(
             child: ListView(
@@ -42,18 +42,18 @@ class AllTasksView extends StatelessWidget {
 }
 
 
-// What You Learned | what to Review
+// Things Learned, Things Reviewed
 
-// Nesting ListView in Column Widget
+// Nesting ListView in Column && Row Widgets
 
-//   - wrap a ListView widget with a Flexible Widget if you want
-//     the Widget to be a child of a Column or Row Widget
+//   - wrap ListView widget with Flexible Widget
 
 
 // Observing State Without Consumer Widgets
 
 //   - Instantiating Consumer Widgets can be expensive
 //   - to avoid expensive objects to watch state changes
-//   - instead you can use context.watch<ChangeNotifierSubClass>().statefulPropery
+//   - you can instead use context.watch<ChangeNotifierSubClass>()
+//     using dot notation to access properties and methods
 
 
