@@ -1,16 +1,45 @@
-# flutter_golang_yt
+# TODO App Go Backend
 
-A new Flutter project.
+Todo App with Go Backend.
 
-## Getting Started
+Practice:
 
-This project is a starting point for a Flutter application.
+- Clean architecture
 
-A few resources to get you started if this is your first Flutter project:
+- Clean D.R.Y code
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+- Service locator design pattern
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- Observer design pattern
+
+- RestFUL API resource identification, representation, and presentation
+
+- Modularity && Abstraction With Client-Server Model
+
+- Separation of concerns (Decoupling / Do One Thing)
+
+- Theming your entire app with ThemeData
+
+- Working with ToastService API (persisting temporary content for users to see)
+
+- auto_route and auto_route_generator (easily generated routes)
+
+- Navigating between views
+
+- Sending data between views
+
+Why Clean Architecture?
+
+- Because we like to create ALOT of folders :D
+
+- you can design applications with very low coupling (different folders) independent of technical implementation details.
+
+- the application becomes easy to maintain and flexible to change.
+
+- Clean architecture allows us to create architectural boundaries between dependencies (have a bunch of folders) which allows components to be intrinsically testable
+
+Tools/Libraries (Packages)
+
+- get_it: a service locator (also a runtime dependency injector)
+
+- Provider: a flutter state management (You can use any kind of state management you prefer)
