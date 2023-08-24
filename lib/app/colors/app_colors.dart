@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 /// Encapsulates the colors used throughout this application.
+
 class AppColors {
   const AppColors._();
 
@@ -12,22 +13,20 @@ class AppColors {
   static const grey1 = Color(0xFFafb1b5);
 
   /// grey with opacity of 0.325.
+  ///
   static final grey2 = const Color(0xFF2e3253).withOpacity(0.325);
 }
 
+// Things Learned, Things Review
 
-// What Your Learned or what you want to review
+// ._() Named Constructor
 
-  // ._() Named Constructor
+//   - a private named constructor function
+//     can only be invoked within the class
+//   - removes instantiation capabilities without an abstract class modifier
 
-  //   - a private named constructor
-  //   - that can only be used within the class
-  //   - removes the ability for a class to be instantiated
-  //     without adding an abstract modifier as a prefix
-  
-  
-  // What is 0xFF?
+// What is 0xFF?
 
-  //   - the hex representation of #
-  //   - required as a prefix to hex color values
-  //     that are passed to the Color API
+//   - the hex representation of #
+//   - required as a prefix to hex color values
+//     passed to Color as an argument to its default constructor function

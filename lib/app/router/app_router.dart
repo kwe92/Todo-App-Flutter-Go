@@ -4,6 +4,7 @@ import 'app_router.gr.dart';
 // Command to refresh your routes:
 
 //   - you must have the build_runner package added as a dependecy
+
 //   - flutter packages pub run build_runner build
 
 @AutoRouterConfig(replaceInRouteName: 'View,Route')
@@ -33,15 +34,16 @@ class AppRouter extends $AppRouter {
 
 // AutoRoute
 
-//   - can build an auto route instance for any existing classes annotated with @RoutePage
-//   - the first AutoRoute should be your initial route and should be identified as such
-//     by passing true as an argument to the initial property of AutoRoute
+//   - classes annotated with @RoutePage can be instantiated into AutoRoutes
+//     after the auto_route_generator is implements their associated PageInfo
+//   - Routes are objects representing a view, managed by the top level Navigator in the Widget Tree
+//   - the first AutoRoute should be your initial route specified by the initial property
 
 // CustomRoute
 
-//   - a sub-type of AutoRoute that has some additional properties like transitionBuilder
+//   - a sub-type of AutoRoute with additional properties
+//     such as  transitionBuilder
 
 // transitionsBuilder property
 
-// - a property of CustomRoute that specifies a transition animation
-//   for the CustomRoute's page
+// - a property of CustomRoute enables transition animations

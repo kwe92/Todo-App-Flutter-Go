@@ -55,12 +55,10 @@ class AddTaskView extends StatelessWidget {
                   ),
                   CustomButton(
                     text: 'Add',
-                    onPressed:
-                        // TODO: add toast service snack bar to notify user the task has been added
-                        () {
+                    onPressed: () {
                       final bool isNotEmpty = context.read<AddTaskViewModel>().isNotEmpty();
-                      final taskName = taskNameController.text;
-                      final taskDetail = taskDetailController.text;
+                      final String taskName = taskNameController.text;
+                      final String taskDetail = taskDetailController.text;
 
                       if (isNotEmpty) {
                         print('\nAdded Task:${taskNameController.text.trim().length}\n');
@@ -73,7 +71,6 @@ class AddTaskView extends StatelessWidget {
                           backgroundColor: AppColors.mainColor,
                           duration: const Duration(seconds: 1),
                           content: Center(
-                            // TODO: this can be implemented better
                             child: Text(
                               'Added Task:\n$taskName',
                               style: baseTextStyle,
