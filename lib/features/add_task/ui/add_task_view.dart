@@ -13,17 +13,13 @@ import 'package:flutter_golang_yt/features/shared/utility/get_screen_size.dart';
 import 'package:flutter_golang_yt/features/all_tasks/ui/all_tasks_view_model.dart';
 import 'package:provider/provider.dart';
 
-// TODO: finish completing view
-
 @RoutePage()
 class AddTaskView extends StatelessWidget {
   const AddTaskView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // refactor to use destructuring
-    final taskNameController = context.watch<AddTaskViewModel>().taskNameController;
-    final taskDetailController = context.watch<AddTaskViewModel>().taskDetailController;
+    final [taskNameController, taskDetailController] = context.watch<AddTaskViewModel>().getAllControllers();
 
     return BasseScaffold(
       // showAppBar: true,
@@ -33,7 +29,6 @@ class AddTaskView extends StatelessWidget {
           Container(
             width: double.maxFinite,
             height: double.maxFinite,
-            // TODO: figure out if we can make the image longer or not
             decoration: _backgroundImage,
             padding: EdgeInsets.only(
               top: ScreenSize.getHeight(context) / 3.5,
@@ -63,14 +58,12 @@ class AddTaskView extends StatelessWidget {
                     onPressed:
                         // TODO: add toast service snack bar to notify user the task has been added
                         () {
-                      final addTaskModel = context.read<AddTaskViewModel>();
+                      final bool isNotEmpty = context.read<AddTaskViewModel>().isNotEmpty();
+                      final taskName = taskNameController.text;
+                      final taskDetail = taskDetailController.text;
 
-                      final taskName = addTaskModel.taskNameController.text;
-
-                      final taskDetail = addTaskModel.taskDetailController.text;
-
-                      if (taskName.trim().isNotEmpty && taskDetail.trim().isNotEmpty) {
-                        print('\nAdded Task:${taskName.trim().length}\n');
+                      if (isNotEmpty) {
+                        print('\nAdded Task:${taskNameController.text.trim().length}\n');
 
                         context.read<AllTasksViewModel>().addTask(taskName, taskDetail);
 
@@ -88,7 +81,7 @@ class AddTaskView extends StatelessWidget {
                           ),
                         );
 
-                        addTaskModel.clearControllers();
+                        context.read<AddTaskViewModel>().clearControllers();
                       }
                     },
                   ),
