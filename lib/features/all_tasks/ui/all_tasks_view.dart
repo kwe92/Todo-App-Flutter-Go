@@ -22,7 +22,7 @@ class AllTasksView extends StatelessWidget {
           )
           .toList()
     ];
-    return BasseScaffold(
+    return BaseScaffold(
       title: 'All Tasks View',
       child: Column(
         children: [

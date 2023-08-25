@@ -21,7 +21,7 @@ class AddTaskView extends StatelessWidget {
   Widget build(BuildContext context) {
     final [taskNameController, taskDetailController] = context.watch<AddTaskViewModel>().getAllControllers();
 
-    return BasseScaffold(
+    return BaseScaffold(
       // showAppBar: true,
       title: 'Add Task View',
       child: Stack(
@@ -61,7 +61,7 @@ class AddTaskView extends StatelessWidget {
                       final String taskDetail = taskDetailController.text;
 
                       if (isNotEmpty) {
-                        print('\nAdded Task:${taskNameController.text.trim().length}\n');
+                        print('\nAdded Task:$taskName\n');
 
                         context.read<AllTasksViewModel>().addTask(taskName, taskDetail);
 

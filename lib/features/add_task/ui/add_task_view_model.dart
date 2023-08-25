@@ -9,10 +9,7 @@ class AddTaskViewModel extends ChangeNotifier {
   TextEditingController get taskNameController => _taskNameController;
   TextEditingController get taskDetailController => _taskDetailController;
 
-  List<TextEditingController> getAllControllers() {
-    final controllers = <TextEditingController>[taskNameController, taskDetailController];
-    return controllers;
-  }
+  List<TextEditingController> getAllControllers() => <TextEditingController>[taskNameController, taskDetailController];
 
   bool isNotEmpty() => taskNameController.text.trim().isNotEmpty && taskDetailController.text.trim().isNotEmpty ? true : false;
 
@@ -34,7 +31,7 @@ class AddTaskViewModel extends ChangeNotifier {
 
 // notifyListeners
 
-//   - calls all registered listeners (clients)
+//   - calls all registered listeners (clients / objects observing state)
 //     that are watching or Consuming an object
-//     should be invoked at the end of a function if the state is changed
+//     should be invoked at the end of a method if the state is changed
 //     within a ChangeNotifier

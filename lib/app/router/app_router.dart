@@ -35,14 +35,14 @@ class AppRouter extends $AppRouter {
 // AutoRoute
 
 //   - classes annotated with @RoutePage can be instantiated into AutoRoutes
-//     after the auto_route_generator is implements their associated PageInfo
+//     after the auto_route_generator implements their associated PageInfo
 //   - Routes are objects representing a view, managed by the top level Navigator in the Widget Tree
 //   - the first AutoRoute should be your initial route specified by the initial property
 
 // CustomRoute
 
 //   - a sub-type of AutoRoute with additional properties
-//     such as  transitionBuilder
+//     such as transitionBuilder
 
 // transitionsBuilder property
 

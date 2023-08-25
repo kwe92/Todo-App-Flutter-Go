@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_golang_yt/app/themes/theme.dart';
 
+// TODO: ADD TextFormField Validators
+
 class AddTaskTextFormField extends StatelessWidget {
   final TextEditingController controller;
   final String hintText;
@@ -31,13 +33,13 @@ class AddTaskTextFormField extends StatelessWidget {
 // Dynamic Theming
 
 //   - You can dynamically theme a widget anywhere in your widget tree
-//   - by Wrapping athe widget with a Theme Widget
+//   - by Wrapping the widget with a Theme Widget
 //     then condotionally changing the argument to the 'data' property
 //     predicated on some condition using Theme.of(context) for default theming
 //     and Theme.of(context).copyWith() to change explicit parts of the Theme for
 //     that widget
 
-// Input Decoration
+// InputDecoration | Widget
 
 //   - TextForm field styling
 //   - passed as an argument to the decoration property

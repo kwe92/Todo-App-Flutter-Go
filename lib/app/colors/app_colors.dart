@@ -13,17 +13,18 @@ class AppColors {
   static const grey1 = Color(0xFFafb1b5);
 
   /// grey with opacity of 0.325.
-  ///
+
   static final grey2 = const Color(0xFF2e3253).withOpacity(0.325);
 }
 
-// Things Learned, Things Review
+// Things Learned, Things Reviewed
 
 // ._() Named Constructor
 
 //   - a private named constructor function
 //     can only be invoked within the class
-//   - removes instantiation capabilities without an abstract class modifier
+//   - removes instantiation capabilities
+//     without adding a abstract class modifier
 
 // What is 0xFF?
 
