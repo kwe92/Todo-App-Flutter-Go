@@ -11,9 +11,9 @@
 import 'package:auto_route/auto_route.dart' as _i4;
 import 'package:flutter_golang_yt/features/add_task/ui/add_task_view.dart'
     as _i1;
-import 'package:flutter_golang_yt/features/home/ui/home_view.dart' as _i3;
-import 'package:flutter_golang_yt/features/view_all/ui/all_tasks_view.dart'
+import 'package:flutter_golang_yt/features/all_tasks/ui/all_tasks_view.dart'
     as _i2;
+import 'package:flutter_golang_yt/features/home/ui/home_view.dart' as _i3;
 
 abstract class $AppRouter extends _i4.RootStackRouter {
   $AppRouter({super.navigatorKey});

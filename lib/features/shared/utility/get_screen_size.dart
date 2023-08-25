@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-/// utility function that shortens the call to MediaQuery.of(context).size for height and width.
+/// ScreenSize has utility methods that shortens the call to MediaQuery.of(context).size for height and width.
 class ScreenSize {
   const ScreenSize._();
 

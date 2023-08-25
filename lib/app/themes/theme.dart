@@ -1,21 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_golang_yt/app/colors/app_colors.dart';
 
+/// AppTheme abstracts the theme of the application.
+
 class AppTheme {
   const AppTheme._();
+
+  /// getTheme returns the ThemeData to style the entire application.
 
   static ThemeData getTheme() {
     return ThemeData(
       useMaterial3: true,
       outlinedButtonTheme: primaryOutlinedButtonTheme,
       inputDecorationTheme: singleLineInputDecorationTheme,
-
       scaffoldBackgroundColor:
-          Colors.white, // the base background color of the scaffold is off-white if you look hard enough you can see this
+          Colors.white, // the base background color of the Scaffold is off-white if you look hard enough you can see this
     );
   }
 }
 
+///
 const _singleLineBorder = OutlineInputBorder(
   borderSide: BorderSide.none,
   borderRadius: BorderRadius.all(
@@ -29,12 +33,13 @@ final _multiLineInputBorder = _singleLineBorder.copyWith(
   ),
 );
 
+/// style for single line TextFormFields.
+
 const singleLineInputDecorationTheme = InputDecorationTheme(
   contentPadding: EdgeInsets.symmetric(
     horizontal: 28.0,
     vertical: 25.0,
   ),
-  // EdgeInsets.only(left: 28.0, top: 50.0,),
   filled: true,
   fillColor: AppColors.grey0,
   border: InputBorder.none,
@@ -43,6 +48,7 @@ const singleLineInputDecorationTheme = InputDecorationTheme(
   focusedBorder: _singleLineBorder,
 );
 
+/// style for single line TextFormFields.
 final multiLineInputDecorationTheme = singleLineInputDecorationTheme.copyWith(
   enabledBorder: _multiLineInputBorder,
   focusedBorder: _multiLineInputBorder,

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class BasseScaffold extends StatelessWidget {
+class BaseScaffold extends StatelessWidget {
   final String title;
   final Widget child;
   final bool showAppBar;
-  const BasseScaffold({
+  const BaseScaffold({
     required this.title,
     required this.child,
     this.showAppBar = false,
