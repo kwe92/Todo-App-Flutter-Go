@@ -12,25 +12,23 @@ class TaskWidget extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: double.maxFinite,
-      height: ScreenSize.getHeight(context) / 14,
-      margin: const EdgeInsets.only(
-        left: 12.0,
-        top: 17.0,
-        right: 12.0,
-      ),
-      decoration: const BoxDecoration(
-        color: AppColors.grey0,
-      ),
-      child: Center(
-        child: Text(
-          task.taskName,
-          textAlign: TextAlign.center,
-          style: mediumTextStyle,
+  Widget build(BuildContext context) => Container(
+        width: double.maxFinite,
+        height: ScreenSize.getHeight(context) / 14,
+        margin: const EdgeInsets.only(
+          left: 12.0,
+          top: 17.0,
+          right: 12.0,
         ),
-      ),
-    );
-  }
+        decoration: const BoxDecoration(
+          color: AppColors.grey0,
+        ),
+        child: Center(
+          child: Text(
+            task.taskName,
+            textAlign: TextAlign.center,
+            style: mediumTextStyle,
+          ),
+        ),
+      );
 }

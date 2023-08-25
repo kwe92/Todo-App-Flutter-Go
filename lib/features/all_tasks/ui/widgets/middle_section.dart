@@ -14,36 +14,34 @@ class MiddleSection extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(
-        left: 12.0,
-        top: 6.0,
-        right: 12.0,
-      ),
-      child: Row(
-        children: [
-          const HomeIcon(),
-          const SizedBox(width: 6),
-          AddIcon(
-            onTap: () => appRouter.push(
-              const AddTaskRoute(),
+  Widget build(BuildContext context) => Padding(
+        padding: const EdgeInsets.only(
+          left: 12.0,
+          top: 6.0,
+          right: 12.0,
+        ),
+        child: Row(
+          children: [
+            const HomeIcon(),
+            const SizedBox(width: 6),
+            AddIcon(
+              onTap: () => appRouter.push(
+                const AddTaskRoute(),
+              ),
             ),
-          ),
-          const Spacer(),
-          const Icon(Icons.file_copy),
-          const SizedBox(width: 6),
-          Text(
-            '$taskCount',
-            style: mediumTextStyle,
-          ),
-        ],
-      ),
-    );
-  }
+            const Spacer(),
+            const Icon(Icons.file_copy),
+            const SizedBox(width: 6),
+            Text(
+              '$taskCount',
+              style: mediumTextStyle,
+            ),
+          ],
+        ),
+      );
 }
 
-// What You Learned | what to Review
+// Things Learned, Things Reviewed
 
 //   - Spacer Widget
 

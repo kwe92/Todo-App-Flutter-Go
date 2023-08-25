@@ -108,7 +108,8 @@ class _DismissibleBackgroundWidget extends StatelessWidget {
   }
 }
 
-// What you learned or what you want to review
+ // Things Learned, Things Reviewed
+
 
 //   - Dismissible Widget
 
@@ -126,8 +127,9 @@ class _DismissibleBackgroundWidget extends StatelessWidget {
 
 //       - background property
 
-//           - a Widget that is stacked behind the child, if a secondaryBackground
-//             Widget has been instantiated then this Widget is only visible when dragging
+//           - a Widget that is stacked behind the child
+//           - if a secondaryBackground Widget has been instantiated
+//             then the background Widget is only visible when dragging
 // 
 //       - secondaryBackground property
 

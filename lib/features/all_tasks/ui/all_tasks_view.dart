@@ -15,7 +15,7 @@ class AllTasksView extends StatelessWidget {
   Widget build(BuildContext context) {
     final observedTaskList = context.watch<AllTasksViewModel>().taskList;
 
-    final taskList = <Widget>[
+    final List<Widget> taskList = [
       ...observedTaskList
           .map(
             (task) => DismissibleTask(task: task),
@@ -46,7 +46,7 @@ class AllTasksView extends StatelessWidget {
 
 // Nesting ListView in Column && Row Widgets
 
-//   - wrap ListView widget with Flexible Widget
+//   - wrap ListView widget with Flexible or Expanded Widget
 
 
 // Observing State Without Consumer Widgets
