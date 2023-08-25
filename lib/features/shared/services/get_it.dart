@@ -3,6 +3,8 @@ import 'package:get_it/get_it.dart';
 
 final GetIt locator = GetIt.instance;
 
+/// configureDependencies initalizes and registers all GetIt singletons.
+
 void configureDependencies() {
   locator.registerSingleton<AppRouter>(
     AppRouter(),

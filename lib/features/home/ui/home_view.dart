@@ -14,30 +14,28 @@ class HomeView extends StatelessWidget {
   const HomeView({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return BaseScaffold(
-      title: 'Home View',
-      child: Container(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 20,
+  Widget build(BuildContext context) => BaseScaffold(
+        title: 'Home View',
+        child: Container(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 20,
+          ),
+          height: double.maxFinite,
+          width: double.maxFinite,
+          decoration: _backgroundImage,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              const _HomeViewTitle(),
+              SizedBox(
+                height: ScreenSize.getHeight(context) / 2.5,
+              ),
+              ..._buttons,
+            ],
+          ),
         ),
-        height: double.maxFinite,
-        width: double.maxFinite,
-        decoration: _backgroundImage,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            const _HomeViewTitle(),
-            SizedBox(
-              height: ScreenSize.getHeight(context) / 2.5,
-            ),
-            ..._buttons,
-          ],
-        ),
-      ),
-    );
-  }
+      );
 }
 
 final List<Widget> _buttons = [
@@ -62,6 +60,7 @@ final List<Widget> _buttons = [
 ];
 
 /// [BoxDecoration] with a [DecorationImage].
+
 const _backgroundImage = BoxDecoration(
   image: DecorationImage(
     image: AssetImage('assets/images/welcome.jpg'),
@@ -105,13 +104,12 @@ class _HomeViewTitle extends StatelessWidget {
 
 //   - a widget that allows text to span multiple lines
 //   - similar to the paragraph <pr> element "tag" in CSS
-//   - there is no intrinsic line break so a \n (new-line) prefix
+//   - there are no intrinsic line break so a \n (new-line) prefix
 //     is required for each line of text
 //   - to have multiple lines you can pass one or more TextSpan widgets
 //     to the 'children' property
 
-
 // Container Background Image
-// 
+
 // DecorationImage(
 //          fit: BoxFit.cover, image: '...')
