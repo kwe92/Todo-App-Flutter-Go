@@ -1,5 +1,7 @@
 import 'package:flutter_golang_yt/app/router/app_router.dart';
+import 'package:flutter_golang_yt/features/shared/services/task_service.dart';
 import 'package:get_it/get_it.dart';
+import 'package:http/http.dart' as http;
 
 final GetIt locator = GetIt.instance;
 
@@ -8,6 +10,14 @@ final GetIt locator = GetIt.instance;
 void configureDependencies() {
   locator.registerSingleton<AppRouter>(
     AppRouter(),
+  );
+
+  locator.registerSingleton<TaskService>(
+    TaskService(),
+  );
+
+  locator.registerSingleton<http.Client>(
+    http.Client(),
   );
 }
 

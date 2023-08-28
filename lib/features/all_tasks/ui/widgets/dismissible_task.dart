@@ -1,21 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_golang_yt/app/colors/app_colors.dart';
-import 'package:flutter_golang_yt/declarations.dart';
+import 'package:flutter_golang_yt/app/router/app_router.gr.dart';
 import 'package:flutter_golang_yt/features/all_tasks/ui/all_tasks_view_model.dart';
 import 'package:flutter_golang_yt/features/all_tasks/ui/widgets/task_widget.dart';
+import 'package:flutter_golang_yt/features/shared/models/task_model.dart';
+import 'package:flutter_golang_yt/features/shared/services/services.dart';
 import 'package:flutter_golang_yt/features/shared/ui/button_widget.dart';
 import 'package:flutter_golang_yt/features/shared/services/toast_service.dart';
 import 'package:flutter_golang_yt/features/shared/utility/get_screen_size.dart';
 import 'package:provider/provider.dart';
 
 class DismissibleTask extends StatelessWidget {
-  final Task task;
+  final TaskModel task;
   const DismissibleTask({required this.task, super.key});
 
   @override
   Widget build(BuildContext context) {
     return Dismissible(
-      key: ObjectKey(task.id),
+      key: UniqueKey(),
       child: TaskWidget(task: task),
       confirmDismiss: (direction) async {
         debugPrint(direction.name);
@@ -54,12 +56,12 @@ class DismissibleTask extends StatelessWidget {
       onDismissed: (direction) {
         // TODO: Add a task deleted toast service snack bar?
         if (direction == DismissDirection.endToStart) {
-          print('TASK DELETED');
-
+          print('\n\nTASK DELETED');
+          appRouter.push(SplashRoute());
           context.read<AllTasksViewModel>().removeTask(task.id);
         }
         if (direction == DismissDirection.startToEnd) {
-          print('EDIT MODE');
+          print('\n\nEDIT MODE');
         }
       },
       background: const _DismissibleBackgroundWidget(

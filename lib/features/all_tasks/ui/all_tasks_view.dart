@@ -1,10 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_golang_yt/features/all_tasks/ui/all_tasks_view_model.dart';
 import 'package:flutter_golang_yt/features/all_tasks/ui/widgets/dismissible_task.dart';
 import 'package:flutter_golang_yt/features/all_tasks/ui/widgets/middle_section.dart';
 import 'package:flutter_golang_yt/features/all_tasks/ui/widgets/top_section.dart';
+import 'package:flutter_golang_yt/features/shared/services/services.dart';
 import 'package:flutter_golang_yt/features/shared/ui/base_scaffold.dart';
-import 'package:flutter_golang_yt/features/all_tasks/ui/all_tasks_view_model.dart';
 import 'package:provider/provider.dart';
 
 @RoutePage()
@@ -13,29 +14,48 @@ class AllTasksView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final observedTaskList = context.watch<AllTasksViewModel>().taskList;
-
-    final List<Widget> taskList = [
-      ...observedTaskList
-          .map(
-            (task) => DismissibleTask(task: task),
-          )
-          .toList()
-    ];
     return BaseScaffold(
       title: 'All Tasks View',
-      child: Column(
-        children: [
-          const TopSecton(),
-          MiddleSection(
-            taskCount: observedTaskList.length,
-          ),
-          Flexible(
-            child: ListView(
-              children: taskList,
-            ),
-          )
-        ],
+      child: FutureBuilder(
+        future: taskService.getAllTasks(),
+        builder: (context, snapshot) {
+          if (snapshot.hasError) {
+            return const Scaffold(
+              body: Center(
+                child: Text('ERROR'),
+              ),
+            );
+          } else if (snapshot.hasData) {
+            final taskModel = context.watch<AllTasksViewModel>();
+
+            taskModel.tasksToMap(snapshot.data);
+
+            final observedTaskList = taskModel.tasks?.values.toList();
+
+            final List<Widget> taskList = [
+              ...observedTaskList!
+                  .map(
+                    (task) => DismissibleTask(task: task),
+                  )
+                  .toList()
+            ];
+
+            return Column(
+              children: [
+                const TopSecton(),
+                MiddleSection(
+                  taskCount: observedTaskList.length,
+                ),
+                Flexible(
+                  child: ListView(
+                    children: taskList,
+                  ),
+                ),
+              ],
+            );
+          }
+          return const CircularProgressIndicator();
+        },
       ),
     );
   }

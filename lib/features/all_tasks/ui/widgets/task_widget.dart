@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_golang_yt/app/colors/app_colors.dart';
 import 'package:flutter_golang_yt/app/themes/theme.dart';
-import 'package:flutter_golang_yt/declarations.dart';
+import 'package:flutter_golang_yt/features/shared/models/task_model.dart';
 import 'package:flutter_golang_yt/features/shared/utility/get_screen_size.dart';
 
 class TaskWidget extends StatelessWidget {
-  final Task task;
+  final TaskModel task;
   const TaskWidget({
     required this.task,
     super.key,
