@@ -10,8 +10,9 @@ import 'package:flutter_golang_yt/features/shared/services/toast_service.dart';
 import 'package:flutter_golang_yt/features/shared/ui/back_arrow_icon.dart';
 import 'package:flutter_golang_yt/features/shared/ui/base_scaffold.dart';
 import 'package:flutter_golang_yt/features/shared/utility/get_screen_size.dart';
-import 'package:flutter_golang_yt/features/all_tasks/ui/all_tasks_view_model.dart';
 import 'package:provider/provider.dart';
+
+// TODO: Need to implement add task to server
 
 @RoutePage()
 class AddTaskView extends StatelessWidget {
@@ -58,12 +59,12 @@ class AddTaskView extends StatelessWidget {
                     onPressed: () {
                       final bool isNotEmpty = context.read<AddTaskViewModel>().isNotEmpty();
                       final String taskName = taskNameController.text;
-                      final String taskDetail = taskDetailController.text;
+                      // final String taskDetail = taskDetailController.text;
 
                       if (isNotEmpty) {
-                        print('\nAdded Task:$taskName\n');
+                        debugPrint('\nAdded Task:$taskName\n');
 
-                        context.read<AllTasksViewModel>().addTask(taskName, taskDetail);
+                        // context.read<AllTasksViewModel>().addTask(taskName, taskDetail);
 
                         ToastService.showSnackBar(
                           context: context,
