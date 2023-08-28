@@ -1,45 +1,22 @@
-// ignore_for_file: prefer_final_fields
-
 import 'package:flutter/material.dart';
-import 'package:flutter_golang_yt/declarations.dart';
+import 'package:flutter_golang_yt/features/shared/models/task_model.dart';
+import 'package:flutter_golang_yt/features/shared/services/services.dart';
 
 class AllTasksViewModel extends ChangeNotifier {
-  Map<int, Task> _tasks = {
-    1101: (
-      id: 1101,
-      taskName: 'Just Keep Coding',
-      taskDetails: 'Clean code is the best code!',
-    ),
-    1102: (
-      id: 1102,
-      taskName: 'Code for 3 hours',
-      taskDetails: 'when attention meets intention.',
-    ),
-    1103: (
-      id: 1103,
-      taskName: 'Begin',
-      taskDetails: 'To begin is half of the work let half still remain, again begin this and though wilt have finish.',
-    ),
-  };
-  // List<String> get taskNames => tasks.map((task) => task.taskName as String).toList();
+  Map<String, TaskModel>? _tasks;
 
-  List<Task> get taskList => _tasks.values.toList();
+  Map<String, TaskModel>? get tasks => _tasks;
 
-  void addTask(String taskName, String taskDetails) {
-    // TODO modify implementation when you use real data
-    final taskId = taskList.last.id + 1;
-    _tasks.addAll({
-      taskId: (
-        id: taskId,
-        taskName: taskName,
-        taskDetails: taskDetails,
-      )
-    });
+  List<TaskModel> get taskList => _tasks!.values.toList();
+
+  void tasksToMap(List<dynamic> allTasks) {
+    _tasks = {for (var task in allTasks) task['id']: TaskModel.fromJson(task)};
     notifyListeners();
   }
 
-  void removeTask(int taskId) {
-    _tasks.remove(taskId);
+  Future<void> removeTask(int taskId) async {
+    _tasks!.remove(taskId);
+    await taskService.deleteTask(taskId);
     notifyListeners();
   }
 }
