@@ -9,8 +9,11 @@ class AllTasksViewModel extends ChangeNotifier {
 
   List<TaskModel> get taskList => _tasks!.values.toList();
 
-  void tasksToMap(List<dynamic> allTasks) {
+  void tasksToMap(List<dynamic> allTasks) async {
     _tasks = {for (var task in allTasks) task['id']: TaskModel.fromJson(task)};
+    await Future.delayed(
+      const Duration(seconds: 2),
+    );
     notifyListeners();
   }
 
