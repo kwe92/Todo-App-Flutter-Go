@@ -1,5 +1,5 @@
 class TaskModel {
-  final String id;
+  final int id;
   final String taskName;
   final String taskDetails;
   final String createdDate;
@@ -11,14 +11,14 @@ class TaskModel {
   });
 
   Map<String, dynamic> toJson() => {
-        "id": id,
+        "id": id.toString(),
         "taskName": taskName,
         "taskDetails": taskDetails,
         "createdDate": createdDate,
       };
 
   TaskModel.fromJson(Map<String, dynamic> json)
-      : id = json['id'],
+      : id = int.parse(json['id']),
         taskName = json['taskName'],
         taskDetails = json['taskDetails'],
         createdDate = json['createdDate'];
