@@ -4,7 +4,7 @@ import 'package:flutter_golang_yt/app/colors/app_colors.dart';
 import 'package:flutter_golang_yt/app/router/app_router.gr.dart';
 import 'package:flutter_golang_yt/app/themes/theme.dart';
 import 'package:flutter_golang_yt/features/add_task/ui/add_task_view_model.dart';
-import 'package:flutter_golang_yt/features/add_task/ui/widgets/add_task_text_form_field.dart';
+import 'package:flutter_golang_yt/features/shared/ui/add_task_text_form_field.dart';
 import 'package:flutter_golang_yt/features/shared/ui/button_widget.dart';
 import 'package:flutter_golang_yt/features/shared/services/services.dart';
 import 'package:flutter_golang_yt/features/shared/services/toast_service.dart';
