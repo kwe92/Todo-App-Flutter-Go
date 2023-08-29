@@ -8,6 +8,8 @@ import 'package:flutter_golang_yt/features/shared/services/services.dart';
 import 'package:flutter_golang_yt/features/shared/ui/base_scaffold.dart';
 import 'package:provider/provider.dart';
 
+// TODO: Seems like widget is continuously rebuilding
+
 @RoutePage()
 class AllTasksView extends StatelessWidget {
   const AllTasksView({super.key});
@@ -26,32 +28,37 @@ class AllTasksView extends StatelessWidget {
               ),
             );
           } else if (snapshot.hasData) {
-            final taskModel = context.watch<AllTasksViewModel>();
+            // final taskModel = context.watch<AllTasksViewModel>();
 
-            taskModel.tasksToMap(snapshot.data);
+            return Consumer<AllTasksViewModel>(
+              builder: (context, model, child) {
+                model.tasksToMap(snapshot.data);
 
-            final observedTaskList = taskModel.tasks?.values.toList();
+                final observedTaskList = model.tasks?.values.toList();
 
-            final List<Widget> taskList = [
-              ...observedTaskList!
-                  .map(
-                    (task) => DismissibleTask(task: task),
-                  )
-                  .toList()
-            ];
+                final List<Widget> taskList = [
+                  ...observedTaskList!
+                      .map(
+                        (task) => DismissibleTask(task: task),
+                      )
+                      .toList()
+                ];
+                debugPrint("\n\nTask List: $taskList");
 
-            return Column(
-              children: [
-                const TopSecton(),
-                MiddleSection(
-                  taskCount: observedTaskList.length,
-                ),
-                Flexible(
-                  child: ListView(
-                    children: taskList,
-                  ),
-                ),
-              ],
+                return Column(
+                  children: [
+                    const TopSecton(),
+                    MiddleSection(
+                      taskCount: observedTaskList.length,
+                    ),
+                    Flexible(
+                      child: ListView(
+                        children: taskList,
+                      ),
+                    ),
+                  ],
+                );
+              },
             );
           }
           return const CircularProgressIndicator();

@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_golang_yt/app/colors/app_colors.dart';
+import 'package:flutter_golang_yt/app/router/app_router.gr.dart';
 import 'package:flutter_golang_yt/app/themes/theme.dart';
 import 'package:flutter_golang_yt/features/add_task/ui/add_task_view_model.dart';
 import 'package:flutter_golang_yt/features/add_task/ui/widgets/add_task_text_form_field.dart';
@@ -13,6 +14,7 @@ import 'package:flutter_golang_yt/features/shared/utility/get_screen_size.dart';
 import 'package:provider/provider.dart';
 
 // TODO: Need to implement add task to server
+// TODO: Figure out why reloading state is not efficient
 
 @RoutePage()
 class AddTaskView extends StatelessWidget {
@@ -59,13 +61,12 @@ class AddTaskView extends StatelessWidget {
                     onPressed: () {
                       final bool isNotEmpty = context.read<AddTaskViewModel>().isNotEmpty();
                       final String taskName = taskNameController.text;
-                      // final String taskDetail = taskDetailController.text;
+                      final String taskDetail = taskDetailController.text;
 
                       if (isNotEmpty) {
-                        debugPrint('\nAdded Task:$taskName\n');
-
-                        // context.read<AllTasksViewModel>().addTask(taskName, taskDetail);
-
+                        debugPrint('\nAdded Task Name:$taskName\n');
+                        debugPrint('\nAdded Task Details:$taskDetail\n');
+                        taskService.createTask({"taskName": taskName, "taskDetails": taskDetail});
                         ToastService.showSnackBar(
                           context: context,
                           height: ScreenSize.getHeight(context) / 8,
@@ -91,7 +92,7 @@ class AddTaskView extends StatelessWidget {
             height: ScreenSize.getHeight(context) / 12,
             padding: const EdgeInsets.only(left: 12),
             child: BackArrowIcon(
-              onTap: () => appRouter.pop(),
+              onTap: () => appRouter.popAndPush(const HomeRoute()),
             ),
           ),
         ],

@@ -16,13 +16,15 @@ class SplashView extends StatefulWidget {
 class _SplashViewState extends State<SplashView> {
   Future<void> _splashDuration() async {
     await Future.delayed(
-      Duration(seconds: widget.duration),
-    );
+        Duration(
+          seconds: widget.duration,
+        ), () {
+      appRouter.replace(
+        const AllTasksRoute(),
+      );
+    });
 
     // TODO: make replacement route a variable?
-    appRouter.replace(
-      const AllTasksRoute(),
-    );
   }
 
   @override
@@ -40,3 +42,10 @@ class _SplashViewState extends State<SplashView> {
     );
   }
 }
+
+// TODO: review
+
+// Future.delayed parameters
+
+//   - second parameter can take a callback as an argument
+
