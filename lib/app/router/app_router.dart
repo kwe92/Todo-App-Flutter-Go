@@ -27,7 +27,11 @@ class AppRouter extends $AppRouter {
         CustomRoute(
           page: SplashRoute.page,
           transitionsBuilder: TransitionsBuilders.slideBottom,
-        )
+        ),
+        CustomRoute(
+          page: StandAloneRoute.page,
+          transitionsBuilder: TransitionsBuilders.slideTop,
+        ),
       ];
 }
 
