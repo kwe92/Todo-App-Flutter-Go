@@ -23,12 +23,7 @@ class DismissibleTask extends StatelessWidget {
         debugPrint(direction.name);
         debugPrint('${task.id}');
         if (direction == DismissDirection.endToStart) {
-          // TODO: added delay before the item is deleted | Set to 0 atm
-
-          return Future.delayed(
-            const Duration(seconds: 0),
-            () => true,
-          );
+          return true;
         } else {
           ToastService.showSnackBar(
             context: context,
@@ -39,13 +34,14 @@ class DismissibleTask extends StatelessWidget {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  CustomButton(text: 'View', onPressed: () {}),
-                  const SizedBox(height: 20.0),
                   CustomButton(
-                    isSecondary: true,
-                    text: 'Edit',
-                    onPressed: () {},
+                    text: 'View',
+                    onPressed: () => appRouter.push(
+                      StandAloneRoute(task: task),
+                    ),
                   ),
+                  const SizedBox(height: 20.0),
+                  CustomButton(isSecondary: true, text: 'Edit', onPressed: () {}),
                 ],
               ),
             ),
