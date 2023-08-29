@@ -7,7 +7,7 @@ import 'package:flutter_golang_yt/features/shared/services/services.dart';
 class SplashView extends StatefulWidget {
   final int duration;
 
-  const SplashView({this.duration = 30, super.key});
+  const SplashView({this.duration = 1, super.key});
 
   @override
   State<SplashView> createState() => _SplashViewState();
