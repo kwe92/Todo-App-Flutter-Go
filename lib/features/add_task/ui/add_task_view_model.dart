@@ -18,6 +18,12 @@ class AddTaskViewModel extends ChangeNotifier {
     taskDetailController.clear();
     notifyListeners();
   }
+
+  void loadControllers(String taskName, String taskDetails) {
+    taskNameController.text = taskName;
+    taskDetailController.text = taskDetails;
+    notifyListeners();
+  }
 }
 
 // ChangeNotifier
