@@ -32,6 +32,10 @@ class AppRouter extends $AppRouter {
           page: StandAloneRoute.page,
           transitionsBuilder: TransitionsBuilders.slideTop,
         ),
+        CustomRoute(
+          page: EditTaskRoute.page,
+          transitionsBuilder: TransitionsBuilders.slideTop,
+        ),
       ];
 }
 
