@@ -61,7 +61,11 @@ class StandAloneView extends StatelessWidget {
             height: ScreenSize.getHeight(context) / 12,
             padding: const EdgeInsets.only(left: 12),
             child: BackArrowIcon(
-              onTap: () => appRouter.pop(),
+              onTap: () {
+                context.read<AddTaskViewModel>().clearControllers();
+
+                appRouter.pop();
+              },
             ),
           ),
         ],
