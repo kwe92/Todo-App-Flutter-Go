@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_golang_yt/app/colors/app_colors.dart';
 import 'package:flutter_golang_yt/app/router/app_router.gr.dart';
+import 'package:flutter_golang_yt/features/add_task/ui/add_task_view_model.dart';
 import 'package:flutter_golang_yt/features/all_tasks/ui/all_tasks_view_model.dart';
 import 'package:flutter_golang_yt/features/all_tasks/ui/widgets/task_widget.dart';
 import 'package:flutter_golang_yt/features/shared/models/task_model.dart';
@@ -23,12 +24,7 @@ class DismissibleTask extends StatelessWidget {
         debugPrint(direction.name);
         debugPrint('${task.id}');
         if (direction == DismissDirection.endToStart) {
-          // TODO: added delay before the item is deleted | Set to 0 atm
-
-          return Future.delayed(
-            const Duration(seconds: 0),
-            () => true,
-          );
+          return true;
         } else {
           ToastService.showSnackBar(
             context: context,
@@ -39,12 +35,28 @@ class DismissibleTask extends StatelessWidget {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  CustomButton(text: 'View', onPressed: () {}),
+                  CustomButton(
+                      text: 'View',
+                      onPressed: () {
+                        ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                        appRouter.push(
+                          StandAloneRoute(task: task),
+                        );
+                      }),
                   const SizedBox(height: 20.0),
                   CustomButton(
                     isSecondary: true,
                     text: 'Edit',
-                    onPressed: () {},
+                    onPressed: () {
+                      ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                      context.read<AddTaskViewModel>().loadControllers(
+                            task.taskName,
+                            task.taskDetails,
+                          );
+                      appRouter.push(
+                        EditTaskRoute(task: task),
+                      );
+                    },
                   ),
                 ],
               ),

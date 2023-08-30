@@ -1,9 +1,10 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter_golang_yt/app/colors/app_colors.dart';
 import 'package:flutter_golang_yt/app/router/app_router.gr.dart';
 import 'package:flutter_golang_yt/app/themes/theme.dart';
 import 'package:flutter_golang_yt/features/add_task/ui/add_task_view_model.dart';
+import 'package:flutter_golang_yt/features/shared/models/task_model.dart';
 import 'package:flutter_golang_yt/features/shared/ui/add_task_text_form_field.dart';
 import 'package:flutter_golang_yt/features/shared/ui/button_widget.dart';
 import 'package:flutter_golang_yt/features/shared/services/services.dart';
@@ -17,16 +18,26 @@ import 'package:provider/provider.dart';
 // TODO: Figure out why reloading state is not efficient
 
 @RoutePage()
-class AddTaskView extends StatelessWidget {
-  const AddTaskView({super.key});
+class EditTaskView extends StatelessWidget {
+  final TaskModel task;
+  const EditTaskView({
+    required this.task,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
+    // context.read<AddTaskViewModel>().loadControllers(
+    //       task.taskName,
+    //       task.taskDetails,
+    //     );
+// TODO: Edit text not clearing for some reason
+
     final [taskNameController, taskDetailController] = context.watch<AddTaskViewModel>().getAllControllers();
 
     return BaseScaffold(
       // showAppBar: true,
-      title: 'Add Task View',
+      title: 'Edit Task View',
       child: Stack(
         children: [
           Container(
@@ -57,16 +68,29 @@ class AddTaskView extends StatelessWidget {
                     height: 32,
                   ),
                   CustomButton(
-                    text: 'Add',
+                    text: 'Edit',
                     onPressed: () {
                       final bool isNotEmpty = context.read<AddTaskViewModel>().isNotEmpty();
+
                       final String taskName = taskNameController.text;
+
                       final String taskDetail = taskDetailController.text;
 
                       if (isNotEmpty) {
-                        debugPrint('\nAdded Task Name:$taskName\n');
-                        debugPrint('\nAdded Task Details:$taskDetail\n');
-                        taskService.createTask({"taskName": taskName, "taskDetails": taskDetail});
+                        debugPrint('\nModified Task Name:$taskName\n');
+
+                        debugPrint('\nModified Task Details:$taskDetail\n');
+
+                        taskService.updateTask({
+                          "id": task.id.toString(),
+                          "taskName": taskName,
+                          "taskDetails": taskDetail,
+                        });
+
+                        // taskNameController.clear();
+                        // taskDetailController.clear();
+                        context.read<AddTaskViewModel>().clearControllers();
+
                         ToastService.showSnackBar(
                           context: context,
                           height: ScreenSize.getHeight(context) / 8,
@@ -74,7 +98,7 @@ class AddTaskView extends StatelessWidget {
                           duration: const Duration(seconds: 1),
                           content: Center(
                             child: Text(
-                              'Added Task:\n$taskName',
+                              'Modified Task:\n$taskName',
                               style: baseTextStyle,
                             ),
                           ),
@@ -92,7 +116,11 @@ class AddTaskView extends StatelessWidget {
             height: ScreenSize.getHeight(context) / 12,
             padding: const EdgeInsets.only(left: 12),
             child: BackArrowIcon(
-              onTap: () => appRouter.popAndPush(const HomeRoute()),
+              onTap: () {
+                context.read<AddTaskViewModel>().clearControllers();
+
+                appRouter.popAndPush(const HomeRoute());
+              },
             ),
           ),
         ],
