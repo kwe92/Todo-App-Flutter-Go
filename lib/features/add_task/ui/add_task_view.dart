@@ -42,7 +42,6 @@ class AddTaskView extends StatelessWidget {
           Container(
             width: double.maxFinite,
             height: double.maxFinite,
-            // decoration: _backgroundImage,
             padding: EdgeInsets.only(
               top: ScreenSize.getHeight(context) / 2.875,
             ),
