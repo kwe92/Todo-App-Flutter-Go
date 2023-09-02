@@ -9,6 +9,7 @@ import 'package:flutter_golang_yt/features/shared/ui/base_scaffold.dart';
 import 'package:provider/provider.dart';
 
 // TODO: Seems like widget is continuously rebuilding
+// TODO: Refactor to not use FutureBuilder
 
 @RoutePage()
 class AllTasksView extends StatelessWidget {
