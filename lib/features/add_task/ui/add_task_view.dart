@@ -31,10 +31,19 @@ class AddTaskView extends StatelessWidget {
         children: [
           Container(
             width: double.maxFinite,
+            height: ScreenSize.getHeight(context) / 3.5,
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                fit: BoxFit.cover,
+                image: AssetImage("assets/images/coffee-table4.webp"),
+              ),
+            ),
+          ),
+          Container(
+            width: double.maxFinite,
             height: double.maxFinite,
-            decoration: _backgroundImage,
             padding: EdgeInsets.only(
-              top: ScreenSize.getHeight(context) / 3.5,
+              top: ScreenSize.getHeight(context) / 2.875,
             ),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -46,7 +55,7 @@ class AddTaskView extends StatelessWidget {
                     hintText: 'Task Name',
                   ),
                   const SizedBox(
-                    height: 24.0,
+                    height: 36,
                   ),
                   AddTaskTextFormField(
                     maxLines: 5,
@@ -54,7 +63,7 @@ class AddTaskView extends StatelessWidget {
                     hintText: 'Task Details',
                   ),
                   const SizedBox(
-                    height: 32,
+                    height: 36,
                   ),
                   CustomButton(
                     text: 'Add',
@@ -92,6 +101,7 @@ class AddTaskView extends StatelessWidget {
             height: ScreenSize.getHeight(context) / 12,
             padding: const EdgeInsets.only(left: 12),
             child: BackArrowIcon(
+              color: AppColors.green0,
               onTap: () => appRouter.popAndPush(const HomeRoute()),
             ),
           ),
@@ -100,10 +110,3 @@ class AddTaskView extends StatelessWidget {
     );
   }
 }
-
-const _backgroundImage = BoxDecoration(
-  image: DecorationImage(
-    fit: BoxFit.cover,
-    image: AssetImage('assets/images/addtask1.jpg'),
-  ),
-);

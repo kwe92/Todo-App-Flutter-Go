@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_golang_yt/app/colors/app_colors.dart';
 import 'package:flutter_golang_yt/features/shared/services/services.dart';
 import 'package:flutter_golang_yt/features/shared/ui/back_arrow_icon.dart';
 import 'package:flutter_golang_yt/features/shared/utility/get_screen_size.dart';
@@ -18,10 +19,11 @@ class TopSecton extends StatelessWidget {
         decoration: const BoxDecoration(
           image: DecorationImage(
             fit: BoxFit.cover,
-            image: AssetImage('assets/images/header1.jpg'),
+            image: AssetImage('assets/images/coffee-table5.avif'),
           ),
         ),
         child: BackArrowIcon(
+          color: AppColors.green0,
           onTap: () => appRouter.pop(),
         ),
       );

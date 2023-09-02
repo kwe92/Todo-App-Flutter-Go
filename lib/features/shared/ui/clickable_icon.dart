@@ -5,12 +5,12 @@ class ClickableIcon extends StatelessWidget {
   final VoidCallback onTap;
   final IconData iconData;
   final double size;
-  final Color color;
+  final Color? color;
 
   const ClickableIcon({
     required this.onTap,
     required this.iconData,
-    this.color = AppColors.secondaryColor,
+    this.color,
     this.size = 30,
     super.key,
   });
@@ -20,7 +20,7 @@ class ClickableIcon extends StatelessWidget {
         onTap: onTap,
         child: Icon(
           size: size,
-          color: color,
+          color: color ?? AppColors.mainColor,
           iconData,
         ),
       );

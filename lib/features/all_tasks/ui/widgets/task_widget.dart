@@ -17,7 +17,7 @@ class TaskWidget extends StatelessWidget {
         height: ScreenSize.getHeight(context) / 14,
         margin: const EdgeInsets.only(
           left: 12.0,
-          top: 17.0,
+          top: 20.0,
           right: 12.0,
         ),
         decoration: const BoxDecoration(

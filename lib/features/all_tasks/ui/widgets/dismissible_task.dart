@@ -76,12 +76,11 @@ class DismissibleTask extends StatelessWidget {
           print('\n\nEDIT MODE');
         }
       },
-      background: const _DismissibleBackgroundWidget(
-        color: Colors.greenAccent,
+      background: _DismissibleBackgroundWidget(
+        color: AppColors.green0.withOpacity(0.75),
         alignment: Alignment.centerLeft,
-        icon: Icon(
+        icon: const Icon(
           Icons.edit,
-          color: AppColors.mainColor,
         ),
       ),
       secondaryBackground: const _DismissibleBackgroundWidget(
@@ -89,7 +88,6 @@ class DismissibleTask extends StatelessWidget {
         alignment: Alignment.centerRight,
         icon: Icon(
           Icons.delete_forever,
-          color: AppColors.mainColor,
         ),
       ),
     );

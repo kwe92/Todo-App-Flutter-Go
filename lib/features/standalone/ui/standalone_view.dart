@@ -29,10 +29,19 @@ class StandAloneView extends StatelessWidget {
         children: [
           Container(
             width: double.maxFinite,
+            height: ScreenSize.getHeight(context) / 3.5,
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                fit: BoxFit.cover,
+                image: AssetImage("assets/images/coffee-table7.avif"),
+              ),
+            ),
+          ),
+          Container(
+            width: double.maxFinite,
             height: double.maxFinite,
-            decoration: _backgroundImage,
             padding: EdgeInsets.only(
-              top: ScreenSize.getHeight(context) / 3.5,
+              top: ScreenSize.getHeight(context) / 2.875,
             ),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -45,7 +54,7 @@ class StandAloneView extends StatelessWidget {
                     hintText: 'Task Name',
                   ),
                   const SizedBox(
-                    height: 24.0,
+                    height: 36,
                   ),
                   AddTaskTextFormField(
                     readOnly: true,
@@ -73,10 +82,3 @@ class StandAloneView extends StatelessWidget {
     );
   }
 }
-
-const _backgroundImage = BoxDecoration(
-  image: DecorationImage(
-    fit: BoxFit.cover,
-    image: AssetImage('assets/images/addtask1.jpg'),
-  ),
-);

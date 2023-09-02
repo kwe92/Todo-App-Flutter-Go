@@ -5,15 +5,23 @@ import 'dart:ui';
 class AppColors {
   const AppColors._();
 
-  static const mainColor = Color(0xFF202e59);
+  // static const mainColor = Color(0xFF202e59);
+  static const mainColor = Color(0xFFdeb384);
+
   static const secondaryColor = Color(0xFF6c8ee3);
-  static const smallTextColor = Color(0xFF2e3253);
+
+  // static const smallTextColor = Color(0xFF2e3253);
+  static const smallTextColor = Color(0xFFfcd8b6);
+
   static const textHolder = Color(0xFFedf0f8);
+
   static const grey0 = Color(0xFFeef0f7);
+
   static const grey1 = Color(0xFFafb1b5);
 
-  /// grey with opacity of 0.325.
+  static const green0 = Color(0xFF1b3520);
 
+  /// grey with opacity of 0.325.
   static final grey2 = const Color(0xFF2e3253).withOpacity(0.325);
 }
 

@@ -55,11 +55,11 @@ final multiLineInputDecorationTheme = singleLineInputDecorationTheme.copyWith(
 );
 
 final primaryOutlinedButtonTheme = OutlinedButtonThemeData(
-  style: blueButtonStyle,
+  style: primaryButtonStyle,
 );
 
 final secondaryOutlinedButtonTheme = OutlinedButtonThemeData(
-  style: whiteButtonStyle,
+  style: secondaryButtonStyle,
 );
 
 const baseTextStyle = TextStyle(
@@ -71,15 +71,15 @@ final mediumTextStyle = baseTextStyle.copyWith(
   color: Colors.blueGrey,
 );
 
-final blueButtonTextStyle = baseTextStyle.copyWith(
+final primaryButtonTextStyle = baseTextStyle.copyWith(
   foreground: Paint()..color = Colors.white,
 );
 
 final whiteButtonTextStyle = baseTextStyle.copyWith(
-  foreground: Paint()..color = AppColors.smallTextColor,
+  foreground: Paint()..color = AppColors.mainColor,
 );
 
-final blueButtonStyle = ButtonStyle(
+final primaryButtonStyle = ButtonStyle(
   side: resolver(
     (states) => BorderSide.none,
   ),
@@ -87,11 +87,11 @@ final blueButtonStyle = ButtonStyle(
     (states) => AppColors.mainColor,
   ),
   textStyle: resolver(
-    (states) => blueButtonTextStyle,
+    (states) => primaryButtonTextStyle,
   ),
 );
 
-final whiteButtonStyle = blueButtonStyle.copyWith(
+final secondaryButtonStyle = primaryButtonStyle.copyWith(
   backgroundColor: resolver(
     (states) => Colors.white,
   ),
