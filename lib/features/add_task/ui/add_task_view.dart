@@ -101,6 +101,7 @@ class AddTaskView extends StatelessWidget {
             height: ScreenSize.getHeight(context) / 12,
             padding: const EdgeInsets.only(left: 12),
             child: BackArrowIcon(
+              color: AppColors.green0,
               onTap: () => appRouter.popAndPush(const HomeRoute()),
             ),
           ),

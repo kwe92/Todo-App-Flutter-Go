@@ -46,7 +46,7 @@ class EditTaskView extends StatelessWidget {
             decoration: const BoxDecoration(
               image: DecorationImage(
                 fit: BoxFit.cover,
-                image: AssetImage("assets/images/coffee-table.avif"),
+                image: AssetImage("assets/images/coffee-table6.avif"),
               ),
             ),
           ),
@@ -137,10 +137,3 @@ class EditTaskView extends StatelessWidget {
     );
   }
 }
-
-const _backgroundImage = BoxDecoration(
-  image: DecorationImage(
-    fit: BoxFit.cover,
-    image: AssetImage('assets/images/addtask1.jpg'),
-  ),
-);
