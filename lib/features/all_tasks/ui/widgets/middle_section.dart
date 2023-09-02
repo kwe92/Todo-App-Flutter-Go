@@ -20,11 +20,12 @@ class MiddleSection extends StatelessWidget {
           left: 12.0,
           top: ScreenSize.getHeight(context) / 24,
           right: 12.0,
+          bottom: 18,
         ),
         child: Row(
           children: [
             const HomeIcon(),
-            const SizedBox(width: 6),
+            const SizedBox(width: 8),
             AddIcon(
               onTap: () => appRouter.popAndPush(
                 const AddTaskRoute(),
@@ -32,7 +33,7 @@ class MiddleSection extends StatelessWidget {
             ),
             const Spacer(),
             const Icon(Icons.file_copy),
-            const SizedBox(width: 6),
+            const SizedBox(width: 8),
             Text(
               '$taskCount',
               style: mediumTextStyle,
