@@ -4,6 +4,7 @@ import 'package:flutter_golang_yt/app/themes/theme.dart';
 import 'package:flutter_golang_yt/features/all_tasks/ui/widgets/add_icon.dart';
 import 'package:flutter_golang_yt/features/all_tasks/ui/widgets/home_icon.dart';
 import 'package:flutter_golang_yt/features/shared/services/services.dart';
+import 'package:flutter_golang_yt/features/shared/utility/get_screen_size.dart';
 
 class MiddleSection extends StatelessWidget {
   final int taskCount;
@@ -15,9 +16,9 @@ class MiddleSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Padding(
-        padding: const EdgeInsets.only(
+        padding: EdgeInsets.only(
           left: 12.0,
-          top: 6.0,
+          top: ScreenSize.getHeight(context) / 24,
           right: 12.0,
         ),
         child: Row(
