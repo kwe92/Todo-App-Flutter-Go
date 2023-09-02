@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_golang_yt/app/colors/app_colors.dart';
 import 'package:flutter_golang_yt/app/router/app_router.gr.dart';
 import 'package:flutter_golang_yt/app/themes/theme.dart';
 import 'package:flutter_golang_yt/features/all_tasks/ui/widgets/add_icon.dart';
@@ -32,7 +33,10 @@ class MiddleSection extends StatelessWidget {
               ),
             ),
             const Spacer(),
-            const Icon(Icons.file_copy),
+            Icon(
+              Icons.file_copy,
+              color: AppColors.green0.withOpacity(.70),
+            ),
             const SizedBox(width: 8),
             Text(
               '$taskCount',

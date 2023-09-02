@@ -81,7 +81,6 @@ class DismissibleTask extends StatelessWidget {
         alignment: Alignment.centerLeft,
         icon: const Icon(
           Icons.edit,
-          color: AppColors.mainColor,
         ),
       ),
       secondaryBackground: const _DismissibleBackgroundWidget(
@@ -89,7 +88,6 @@ class DismissibleTask extends StatelessWidget {
         alignment: Alignment.centerRight,
         icon: Icon(
           Icons.delete_forever,
-          color: AppColors.mainColor,
         ),
       ),
     );
