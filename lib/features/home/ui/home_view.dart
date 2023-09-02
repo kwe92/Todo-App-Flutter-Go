@@ -19,19 +19,21 @@ class HomeView extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.symmetric(
             horizontal: 20,
+            vertical: 46,
           ),
           height: double.maxFinite,
           width: double.maxFinite,
           decoration: _backgroundImage,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               const _HomeViewTitle(),
               SizedBox(
                 height: ScreenSize.getHeight(context) / 2.5,
               ),
-              ..._buttons,
+              const Spacer(),
+              ..._buttons
             ],
           ),
         ),
@@ -63,7 +65,7 @@ final List<Widget> _buttons = [
 
 const _backgroundImage = BoxDecoration(
   image: DecorationImage(
-    image: AssetImage('assets/images/welcome.jpg'),
+    image: AssetImage('assets/images/coffee-table3.avif'),
     fit: BoxFit.cover,
   ),
 );
@@ -80,7 +82,9 @@ class _HomeViewTitle extends StatelessWidget {
             TextSpan(
               text: '\nstart your beautiful day.',
               style: TextStyle(
+                // color: AppColors.smallTextColor,
                 color: AppColors.smallTextColor,
+
                 fontSize: 14,
               ),
             ),
