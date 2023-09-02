@@ -18,7 +18,7 @@ class TopSecton extends StatelessWidget {
         decoration: const BoxDecoration(
           image: DecorationImage(
             fit: BoxFit.cover,
-            image: AssetImage('assets/images/header1.jpg'),
+            image: AssetImage('assets/images/coffee-table5.avif'),
           ),
         ),
         child: BackArrowIcon(
