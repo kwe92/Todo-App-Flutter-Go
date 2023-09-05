@@ -8,9 +8,6 @@ import 'package:flutter_golang_yt/features/shared/services/services.dart';
 import 'package:flutter_golang_yt/features/shared/ui/base_scaffold.dart';
 import 'package:provider/provider.dart';
 
-// TODO: Seems like widget is continuously rebuilding
-// TODO: Refactor to not use FutureBuilder
-
 @RoutePage()
 class AllTasksView extends StatelessWidget {
   const AllTasksView({super.key});
@@ -20,37 +17,49 @@ class AllTasksView extends StatelessWidget {
     return BaseScaffold(
       title: 'All Tasks View',
       child: FutureBuilder(
-        future: taskService.getAllTasks(),
+        future:
+            // TODO: remove anonymous delay
+            () async {
+          await Future.delayed(
+            const Duration(seconds: 3),
+          );
+          return taskService.getAllTasks();
+        }(),
         builder: (context, snapshot) {
           if (snapshot.hasError) {
-            return const Scaffold(
-              body: Center(
+            debugPrint("\n\nSnapshoot Error: ${snapshot.error}");
+            // TODO: Create Error View
+            return const BaseScaffold(
+              showAppBar: true,
+              title: "Error Page",
+              child: Center(
                 child: Text('ERROR'),
               ),
             );
+          } else if (snapshot.connectionState == ConnectionState.waiting) {
+            // TODO: replace with loading screen
+            return const BaseScaffold(
+              title: "Loading Screen",
+              child: Center(
+                child: SizedBox(
+                  height: 42,
+                  width: 42,
+                  child: CircularProgressIndicator(),
+                ),
+              ),
+            );
           } else if (snapshot.hasData) {
-            // final taskModel = context.watch<AllTasksViewModel>();
-
             return Consumer<AllTasksViewModel>(
               builder: (context, model, child) {
-                model.tasksToMap(snapshot.data);
+                final List<Widget> taskList = model.allTasks.map((task) => DismissibleTask(task: task)).toList();
 
-                final observedTaskList = model.tasks?.values.toList();
-
-                final List<Widget> taskList = [
-                  ...observedTaskList!
-                      .map(
-                        (task) => DismissibleTask(task: task),
-                      )
-                      .toList()
-                ];
                 debugPrint("\n\nTask List: $taskList");
 
                 return Column(
                   children: [
                     const TopSecton(),
                     MiddleSection(
-                      taskCount: observedTaskList.length,
+                      taskCount: taskList.length,
                     ),
                     Flexible(
                       child: ListView(
@@ -62,7 +71,17 @@ class AllTasksView extends StatelessWidget {
               },
             );
           }
-          return const CircularProgressIndicator();
+          // TODO: replace with loading screen
+          return const BaseScaffold(
+            title: "Loading Screen",
+            child: Center(
+              child: SizedBox(
+                height: 42,
+                width: 42,
+                child: CircularProgressIndicator(),
+              ),
+            ),
+          );
         },
       ),
     );
