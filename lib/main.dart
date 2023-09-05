@@ -18,6 +18,9 @@ void main() {
         ChangeNotifierProvider(
           create: (context) => AllTasksViewModel(),
         ),
+        ChangeNotifierProvider(
+          create: (context) => taskService,
+        )
       ],
       child: const MyApp(),
     ),
