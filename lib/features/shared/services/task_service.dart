@@ -1,4 +1,8 @@
+// ignore_for_file: prefer_final_fields
+
 import 'dart:io';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_golang_yt/features/shared/models/task_model.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'api_service.dart';
@@ -7,7 +11,7 @@ import 'api_service.dart';
 
 /// TaskService is a stub for sending requests to the task API endpoints.
 
-class TaskService extends ApiService {
+class TaskService extends ApiService with ChangeNotifier {
   @override
   String get host => "http://127.0.0.1:8082";
 
@@ -16,11 +20,23 @@ class TaskService extends ApiService {
         HttpHeaders.contentTypeHeader: "application/json",
       };
 
-  /// getAllTasks requests all tasks from the server.
+  List<TaskModel> _allTasks = [];
 
+  List<TaskModel> get allTasks => _allTasks;
+
+  /// getAllTasks requests all tasks from the server.
   Future<dynamic> getAllTasks() async {
     final http.Response response = await get(EndPoint.gettasks.path);
-    return jsonDecode(response.body);
+
+    final List<dynamic> tasks = jsonDecode(response.body);
+
+    final List<TaskModel> taskList = [for (Map<String, dynamic> task in tasks) TaskModel.fromJson(task)];
+
+    _allTasks = taskList;
+
+    notifyListeners();
+
+    return taskList;
   }
 
   /// getTaskById request a task by id from the server.
