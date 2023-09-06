@@ -1,5 +1,6 @@
 import 'package:flutter_golang_yt/app/router/app_router.dart';
 import 'package:flutter_golang_yt/features/shared/services/task_service.dart';
+import 'package:flutter_golang_yt/features/shared/services/toast_service.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
 
@@ -18,6 +19,10 @@ void configureDependencies() {
 
   locator.registerSingleton<http.Client>(
     http.Client(),
+  );
+
+  locator.registerSingleton<ToastService>(
+    const ToastService(),
   );
 }
 
