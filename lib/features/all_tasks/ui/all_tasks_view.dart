@@ -21,7 +21,7 @@ class AllTasksView extends StatelessWidget {
             // TODO: remove anonymous delay
             () async {
           await Future.delayed(
-            const Duration(seconds: 3),
+            const Duration(seconds: 0),
           );
           return taskService.getAllTasks();
         }(),
@@ -53,7 +53,8 @@ class AllTasksView extends StatelessWidget {
               builder: (context, model, child) {
                 final List<Widget> taskList = model.allTasks.map((task) => DismissibleTask(task: task)).toList();
 
-                debugPrint("\n\nTask List: $taskList");
+                // TODO: maybe remove this log
+                debugPrint("\ntask list from AllTasksView: $taskList");
 
                 return Column(
                   children: [
