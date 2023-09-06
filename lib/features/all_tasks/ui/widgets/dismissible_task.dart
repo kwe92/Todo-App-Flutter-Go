@@ -1,99 +1,43 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_golang_yt/app/colors/app_colors.dart';
-import 'package:flutter_golang_yt/app/router/app_router.gr.dart';
-import 'package:flutter_golang_yt/features/add_task/ui/add_task_view_model.dart';
-import 'package:flutter_golang_yt/features/all_tasks/ui/all_tasks_view_model.dart';
 import 'package:flutter_golang_yt/features/all_tasks/ui/widgets/dismissible_background_widget.dart';
 import 'package:flutter_golang_yt/features/all_tasks/ui/widgets/task_widget.dart';
 import 'package:flutter_golang_yt/features/shared/models/task_model.dart';
 import 'package:flutter_golang_yt/features/shared/services/services.dart';
-import 'package:flutter_golang_yt/features/shared/ui/button_widget.dart';
-import 'package:flutter_golang_yt/features/shared/services/toast_service.dart';
-import 'package:flutter_golang_yt/features/shared/utility/get_screen_size.dart';
-import 'package:provider/provider.dart';
+
+const double _backgroundWidgetSpacing = 25;
 
 class DismissibleTask extends StatelessWidget {
   final TaskModel task;
   const DismissibleTask({required this.task, super.key});
 
   @override
-  Widget build(BuildContext context) {
-    const double backgroundWidgetSpacing = 25;
-
-    return Dismissible(
-      key: UniqueKey(),
-      child: TaskWidget(task: task),
-      confirmDismiss: (direction) async => direction == DismissDirection.endToStart ? true : _showSnackbar(context, task),
-      onDismissed: (direction) async => direction == DismissDirection.endToStart ? _deleteTask(context, task) : null,
-      background: DismissibleBackgroundWidget(
-        color: AppColors.green0.withOpacity(0.75),
-        alignment: Alignment.centerLeft,
-        padding: const EdgeInsets.only(left: backgroundWidgetSpacing),
-        icon: const Icon(
-          Icons.edit,
-        ),
-      ),
-      secondaryBackground: const DismissibleBackgroundWidget(
-        color: Colors.redAccent,
-        alignment: Alignment.centerRight,
-        padding: EdgeInsets.only(right: backgroundWidgetSpacing),
-        icon: Icon(
-          Icons.delete_forever,
-        ),
-      ),
-    );
-  }
-}
-
-bool _showSnackbar(BuildContext context, TaskModel task) {
-  ToastService.showSnackBar(
-    context: context,
-    height: ScreenSize.getHeight(context) / 3,
-    backgroundColor: AppColors.grey2,
-    duration: const Duration(seconds: 3),
-    content: Center(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          CustomButton(
-              text: 'View',
-              onPressed: () {
-                ScaffoldMessenger.of(context).hideCurrentSnackBar();
-                appRouter.push(
-                  StandAloneRoute(task: task),
-                );
-              }),
-          const SizedBox(height: 20.0),
-          CustomButton(
-            isSecondary: true,
-            text: 'Edit',
-            onPressed: () {
-              ScaffoldMessenger.of(context).hideCurrentSnackBar();
-              context.read<AddTaskViewModel>().loadControllers(
-                    task.taskName,
-                    task.taskDetails,
-                  );
-              appRouter.push(
-                EditTaskRoute(task: task),
-              );
-            },
+  Widget build(BuildContext context) => Dismissible(
+        key: UniqueKey(),
+        child: TaskWidget(task: task),
+        confirmDismiss: (direction) async =>
+            direction == DismissDirection.endToStart ? true : dismissibleService.showSnackbar(context, task),
+        onDismissed: (direction) async => direction == DismissDirection.endToStart ? dismissibleService.deleteTask(context, task) : null,
+        background: DismissibleBackgroundWidget(
+          color: AppColors.green0.withOpacity(0.75),
+          alignment: Alignment.centerLeft,
+          padding: const EdgeInsets.only(left: _backgroundWidgetSpacing),
+          icon: const Icon(
+            Icons.edit,
           ),
-        ],
-      ),
-    ),
-  );
-  return false;
+        ),
+        secondaryBackground: const DismissibleBackgroundWidget(
+          color: Colors.redAccent,
+          alignment: Alignment.centerRight,
+          padding: EdgeInsets.only(right: _backgroundWidgetSpacing),
+          icon: Icon(
+            Icons.delete_forever,
+          ),
+        ),
+      );
 }
 
-void _deleteTask(BuildContext context, TaskModel task) async {
-  await taskService.deleteTask(task.id);
-
-  debugPrint('\nTASK DELETED: $task');
-
-  context.read<AllTasksViewModel>().refresh();
-}
- // Things Learned, Things Reviewed
-
+// Things Learned, Things Reviewed
 
 //   - Dismissible Widget
 
