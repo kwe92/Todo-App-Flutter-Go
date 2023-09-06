@@ -6,7 +6,7 @@ class ToastService {
 
   /// A reusable snack bar that persists as the user navigates.
 
-  static void showSnackBar({
+  void showSnackBar({
     required BuildContext context,
     required double height,
     required Color backgroundColor,
