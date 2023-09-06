@@ -8,6 +8,7 @@ class AllTasksViewModel extends ChangeNotifier {
   List<TaskModel> get allTasks => _allTasks;
 
   void refresh() {
+    debugPrint("\nFrom Refresh: ${taskService.allTasks}");
     _allTasks = taskService.allTasks;
     notifyListeners();
   }
