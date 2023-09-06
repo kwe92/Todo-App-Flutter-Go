@@ -11,7 +11,7 @@ import 'api_service.dart';
 
 /// TaskService is a stub for sending requests to the task API endpoints.
 
-class TaskService extends ApiService with ChangeNotifier {
+class TaskService extends ApiService {
   @override
   String get host => "http://127.0.0.1:8082";
 
@@ -30,11 +30,11 @@ class TaskService extends ApiService with ChangeNotifier {
 
     final List<dynamic> tasks = jsonDecode(response.body);
 
-    final List<TaskModel> taskList = [for (Map<String, dynamic> task in tasks) TaskModel.fromJson(task)];
+    final taskList = <TaskModel>[for (Map<String, dynamic> task in tasks) TaskModel.fromJson(task)];
 
     _allTasks = taskList;
 
-    notifyListeners();
+    debugPrint("\n\nFrom getAllTasks: $taskList");
 
     return taskList;
   }
@@ -71,11 +71,18 @@ class TaskService extends ApiService with ChangeNotifier {
 
   /// deleteTask removes a task with the specified id.
 
-  Future<dynamic> deleteTask(int taskId) async {
+  Future<void> deleteTask(int taskId) async {
     final response = await delete(
       EndPoint.delete.path + taskId.toString(),
     );
-    return jsonDecode(response.body);
+
+    final List<dynamic> tasks = jsonDecode(response.body);
+
+    final taskList = <TaskModel>[for (Map<String, dynamic> task in tasks) TaskModel.fromJson(task)];
+
+    _allTasks = taskList;
+
+    debugPrint("\n\nFrom deleteTask: $allTasks");
   }
 }
 
