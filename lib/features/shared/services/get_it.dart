@@ -1,4 +1,5 @@
 import 'package:flutter_golang_yt/app/router/app_router.dart';
+import 'package:flutter_golang_yt/features/all_tasks/services/dismissible_service.dart';
 import 'package:flutter_golang_yt/features/shared/services/task_service.dart';
 import 'package:flutter_golang_yt/features/shared/services/toast_service.dart';
 import 'package:get_it/get_it.dart';
@@ -23,6 +24,10 @@ void configureDependencies() {
 
   locator.registerSingleton<ToastService>(
     const ToastService(),
+  );
+
+  locator.registerSingleton<DismissibleService>(
+    const DismissibleService(),
   );
 }
 
