@@ -1,21 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_golang_yt/app/colors/app_colors.dart';
-import 'package:flutter_golang_yt/app/router/app_router.gr.dart';
 import 'package:flutter_golang_yt/app/themes/theme.dart';
-import 'package:flutter_golang_yt/features/add_task/ui/add_task_view_model.dart';
+import 'package:flutter_golang_yt/features/all_tasks/ui/all_tasks_view_model.dart';
+import 'package:flutter_golang_yt/features/edit_task/ui/edit_task_view_model.dart';
 import 'package:flutter_golang_yt/features/shared/models/task_model.dart';
 import 'package:flutter_golang_yt/features/shared/ui/add_task_text_form_field.dart';
 import 'package:flutter_golang_yt/features/shared/ui/button_widget.dart';
 import 'package:flutter_golang_yt/features/shared/services/services.dart';
-import 'package:flutter_golang_yt/features/shared/services/toast_service.dart';
 import 'package:flutter_golang_yt/features/shared/ui/back_arrow_icon.dart';
 import 'package:flutter_golang_yt/features/shared/ui/base_scaffold.dart';
 import 'package:flutter_golang_yt/features/shared/utility/get_screen_size.dart';
 import 'package:provider/provider.dart';
 
-// TODO: Need to implement add task to server
-// TODO: Figure out why reloading state is not efficient
+// TODO: Use Consumer2 instead of calling context multiple times
 
 @RoutePage()
 class EditTaskView extends StatelessWidget {
@@ -27,13 +25,9 @@ class EditTaskView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // context.read<AddTaskViewModel>().loadControllers(
-    //       task.taskName,
-    //       task.taskDetails,
-    //     );
-// TODO: Edit text not clearing for some reason
+    context.read<EditTaskViewModel>().loadControllers(task);
 
-    final [taskNameController, taskDetailController] = context.watch<AddTaskViewModel>().getAllControllers();
+    final [taskNameController, taskDetailController] = context.read<EditTaskViewModel>().getAllControllers();
 
     return BaseScaffold(
       // showAppBar: true,
@@ -78,8 +72,8 @@ class EditTaskView extends StatelessWidget {
                   ),
                   CustomButton(
                     text: 'Edit',
-                    onPressed: () {
-                      final bool isNotEmpty = context.read<AddTaskViewModel>().isNotEmpty();
+                    onPressed: () async {
+                      final bool isNotEmpty = context.read<EditTaskViewModel>().isNotEmpty();
 
                       final String taskName = taskNameController.text;
 
@@ -90,17 +84,16 @@ class EditTaskView extends StatelessWidget {
 
                         debugPrint('\nModified Task Details:$taskDetail\n');
 
-                        taskService.updateTask({
+                        await taskService.updateTask({
                           "id": task.id.toString(),
                           "taskName": taskName,
                           "taskDetails": taskDetail,
                         });
+                        context.read<EditTaskViewModel>().clearControllers();
 
-                        // taskNameController.clear();
-                        // taskDetailController.clear();
-                        context.read<AddTaskViewModel>().clearControllers();
+                        context.read<AllTasksViewModel>().refresh();
 
-                        ToastService.showSnackBar(
+                        toastService.showSnackBar(
                           context: context,
                           height: ScreenSize.getHeight(context) / 8,
                           backgroundColor: AppColors.mainColor,
@@ -112,8 +105,6 @@ class EditTaskView extends StatelessWidget {
                             ),
                           ),
                         );
-
-                        context.read<AddTaskViewModel>().clearControllers();
                       }
                     },
                   ),
@@ -126,9 +117,9 @@ class EditTaskView extends StatelessWidget {
             padding: const EdgeInsets.only(left: 12),
             child: BackArrowIcon(
               onTap: () {
-                context.read<AddTaskViewModel>().clearControllers();
+                context.read<EditTaskViewModel>().clearControllers();
 
-                appRouter.popAndPush(const HomeRoute());
+                appRouter.pop();
               },
             ),
           ),
