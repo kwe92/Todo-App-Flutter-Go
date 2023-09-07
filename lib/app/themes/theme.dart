@@ -89,6 +89,9 @@ final primaryButtonStyle = ButtonStyle(
   textStyle: resolver(
     (states) => primaryButtonTextStyle,
   ),
+  overlayColor: resolver(
+    (states) => AppColors.grey1.withOpacity(0.20),
+  ),
 );
 
 final secondaryButtonStyle = primaryButtonStyle.copyWith(
