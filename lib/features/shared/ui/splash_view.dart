@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_golang_yt/app/router/app_router.gr.dart';
 import 'package:flutter_golang_yt/features/shared/services/services.dart';
 
+// TODO: Refactor Implementation
 @RoutePage()
 class SplashView extends StatefulWidget {
   final int duration;

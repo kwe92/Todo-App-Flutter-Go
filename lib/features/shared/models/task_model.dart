@@ -22,4 +22,7 @@ class TaskModel {
         taskName = json['taskName'],
         taskDetails = json['taskDetails'],
         createdDate = json['createdDate'];
+
+  @override
+  String toString() => 'TaskModel(id: $id, taskName: $taskName, taskDetails: $taskDetails, createdDate: $createdDate)';
 }

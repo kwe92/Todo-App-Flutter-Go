@@ -1,20 +1,16 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_golang_yt/app/colors/app_colors.dart';
-import 'package:flutter_golang_yt/app/router/app_router.gr.dart';
 import 'package:flutter_golang_yt/app/themes/theme.dart';
 import 'package:flutter_golang_yt/features/add_task/ui/add_task_view_model.dart';
+import 'package:flutter_golang_yt/features/all_tasks/ui/all_tasks_view_model.dart';
 import 'package:flutter_golang_yt/features/shared/ui/add_task_text_form_field.dart';
 import 'package:flutter_golang_yt/features/shared/ui/button_widget.dart';
 import 'package:flutter_golang_yt/features/shared/services/services.dart';
-import 'package:flutter_golang_yt/features/shared/services/toast_service.dart';
 import 'package:flutter_golang_yt/features/shared/ui/back_arrow_icon.dart';
 import 'package:flutter_golang_yt/features/shared/ui/base_scaffold.dart';
 import 'package:flutter_golang_yt/features/shared/utility/get_screen_size.dart';
 import 'package:provider/provider.dart';
-
-// TODO: Need to implement add task to server
-// TODO: Figure out why reloading state is not efficient
 
 @RoutePage()
 class AddTaskView extends StatelessWidget {
@@ -67,7 +63,7 @@ class AddTaskView extends StatelessWidget {
                   ),
                   CustomButton(
                     text: 'Add',
-                    onPressed: () {
+                    onPressed: () async {
                       final bool isNotEmpty = context.read<AddTaskViewModel>().isNotEmpty();
                       final String taskName = taskNameController.text;
                       final String taskDetail = taskDetailController.text;
@@ -75,11 +71,12 @@ class AddTaskView extends StatelessWidget {
                       if (isNotEmpty) {
                         debugPrint('\nAdded Task Name:$taskName\n');
                         debugPrint('\nAdded Task Details:$taskDetail\n');
-                        taskService.createTask({"taskName": taskName, "taskDetails": taskDetail});
-                        ToastService.showSnackBar(
+                        await taskService.createTask({"taskName": taskName, "taskDetails": taskDetail});
+                        context.read<AllTasksViewModel>().refresh();
+                        toastService.showSnackBar(
                           context: context,
                           height: ScreenSize.getHeight(context) / 8,
-                          backgroundColor: AppColors.mainColor,
+                          backgroundColor: AppColors.grey2,
                           duration: const Duration(seconds: 1),
                           content: Center(
                             child: Text(
@@ -102,7 +99,7 @@ class AddTaskView extends StatelessWidget {
             padding: const EdgeInsets.only(left: 12),
             child: BackArrowIcon(
               color: AppColors.green0,
-              onTap: () => appRouter.popAndPush(const HomeRoute()),
+              onTap: () => appRouter.pop(),
             ),
           ),
         ],

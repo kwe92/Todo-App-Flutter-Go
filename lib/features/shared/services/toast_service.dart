@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 
 /// A ToastService API which provides temporary content for the user to see such as [SnackBar]'s and [MaterialBanner]'s.
 class ToastService {
-  const ToastService._();
+  const ToastService();
 
   /// A reusable snack bar that persists as the user navigates.
 
-  static void showSnackBar({
+  void showSnackBar({
     required BuildContext context,
     required double height,
     required Color backgroundColor,
