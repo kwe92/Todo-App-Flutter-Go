@@ -96,7 +96,7 @@ class EditTaskView extends StatelessWidget {
                         toastService.showSnackBar(
                           context: context,
                           height: ScreenSize.getHeight(context) / 8,
-                          backgroundColor: AppColors.mainColor,
+                          backgroundColor: AppColors.grey2,
                           duration: const Duration(seconds: 1),
                           content: Center(
                             child: Text(
