@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_golang_yt/app/colors/app_colors.dart';
 import 'package:flutter_golang_yt/app/router/app_router.gr.dart';
-import 'package:flutter_golang_yt/features/add_task/ui/add_task_view_model.dart';
 import 'package:flutter_golang_yt/features/all_tasks/ui/all_tasks_view_model.dart';
 import 'package:flutter_golang_yt/features/shared/models/task_model.dart';
 import 'package:flutter_golang_yt/features/shared/services/services.dart';
@@ -36,10 +35,6 @@ class DismissibleService {
               text: 'Edit',
               onPressed: () {
                 ScaffoldMessenger.of(context).hideCurrentSnackBar();
-                context.read<AddTaskViewModel>().loadControllers(
-                      task.taskName,
-                      task.taskDetails,
-                    );
                 appRouter.push(
                   EditTaskRoute(task: task),
                 );
