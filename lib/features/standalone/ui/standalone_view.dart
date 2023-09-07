@@ -1,12 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_golang_yt/features/add_task/ui/add_task_view_model.dart';
 import 'package:flutter_golang_yt/features/shared/models/task_model.dart';
 import 'package:flutter_golang_yt/features/shared/services/services.dart';
 import 'package:flutter_golang_yt/features/shared/ui/add_task_text_form_field.dart';
 import 'package:flutter_golang_yt/features/shared/ui/back_arrow_icon.dart';
 import 'package:flutter_golang_yt/features/shared/ui/base_scaffold.dart';
 import 'package:flutter_golang_yt/features/shared/utility/get_screen_size.dart';
+import 'package:flutter_golang_yt/features/standalone/ui/standalone_view_model.dart';
 import 'package:provider/provider.dart';
 
 @RoutePage()
@@ -19,8 +19,8 @@ class StandAloneView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    context.read<AddTaskViewModel>().loadControllers(task.taskName, task.taskDetails);
-    final [taskNameController, taskDetailController] = context.watch<AddTaskViewModel>().getAllControllers();
+    context.read<StandAloneViewModel>().loadControllers(task);
+    final [taskNameController, taskDetailController] = context.watch<StandAloneViewModel>().getAllControllers();
 
     return BaseScaffold(
       // showAppBar: true,
@@ -71,7 +71,7 @@ class StandAloneView extends StatelessWidget {
             padding: const EdgeInsets.only(left: 12),
             child: BackArrowIcon(
               onTap: () {
-                context.read<AddTaskViewModel>().clearControllers();
+                context.read<StandAloneViewModel>().clearControllers();
 
                 appRouter.pop();
               },
