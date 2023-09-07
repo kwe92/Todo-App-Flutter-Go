@@ -5,6 +5,7 @@ import 'package:flutter_golang_yt/features/all_tasks/ui/all_tasks_view_model.dar
 import 'package:flutter_golang_yt/features/edit_task/ui/edit_task_view_model.dart';
 import 'package:flutter_golang_yt/features/shared/services/get_it.dart';
 import 'package:flutter_golang_yt/features/shared/services/services.dart';
+import 'package:flutter_golang_yt/features/standalone/ui/standalone_view_model.dart';
 import 'package:provider/provider.dart';
 
 // TODO: maybe implement notification service for old created tasks
@@ -21,6 +22,9 @@ void main() {
         ),
         ChangeNotifierProvider(
           create: (context) => EditTaskViewModel(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => StandAloneViewModel(),
         ),
       ],
       child: const MyApp(),
