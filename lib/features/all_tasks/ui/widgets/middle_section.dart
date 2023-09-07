@@ -28,7 +28,7 @@ class MiddleSection extends StatelessWidget {
             const HomeIcon(),
             const SizedBox(width: 8),
             AddIcon(
-              onTap: () => appRouter.popAndPush(
+              onTap: () => appRouter.push(
                 const AddTaskRoute(),
               ),
             ),
