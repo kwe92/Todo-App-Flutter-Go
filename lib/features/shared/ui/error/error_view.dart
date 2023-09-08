@@ -1,30 +1,36 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_golang_yt/features/shared/services/services.dart';
-import 'package:flutter_golang_yt/features/shared/ui/button_widget.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_golang_yt/app/colors/app_colors.dart';
+import 'package:flutter_golang_yt/features/shared/ui/centered_text_widget.dart';
+import 'package:flutter_golang_yt/features/shared/ui/error/widgets/error_button.dart';
+import 'package:flutter_golang_yt/features/shared/ui/error/widgets/error_image.dart';
 
 class ErrorView extends StatelessWidget {
   const ErrorView({super.key});
 
   @override
   Widget build(BuildContext context) => Container(
+        color: AppColors.grey0,
         width: double.maxFinite,
-        padding: const EdgeInsets.symmetric(horizontal: 24),
-        child: Column(
+        padding: const EdgeInsets.only(
+          left: 24,
+          top: 48,
+          right: 24,
+        ),
+        child: const Column(
           children: [
-            const _ErrorImage(),
-            const SizedBox(height: 24),
-            const Text(
+            ErrorImage(),
+            SizedBox(height: 24),
+            Text(
               "Network Issues",
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.w800,
               ),
             ),
-            const SizedBox(
+            SizedBox(
               height: 8,
             ),
-            const CenteredText(
+            CenteredText(
               text: _errorText,
               style: TextStyle(
                 fontSize: 18,
@@ -32,55 +38,13 @@ class ErrorView extends StatelessWidget {
                 height: 1.5,
               ),
             ),
-            const Spacer(),
-            CustomButton(
-                onPressed: () {
-                  appRouter.pop();
-                },
-                text: "Back Home"),
             SizedBox(
-              height: MediaQuery.of(context).size.height / 10,
-            )
+              height: 78,
+            ),
+            ErrorButton(),
           ],
         ),
       );
 }
 
-class _ErrorImage extends StatelessWidget {
-  const _ErrorImage({super.key});
-
-  @override
-  Widget build(BuildContext context) => Container(
-        width: double.maxFinite,
-        height: MediaQuery.of(context).size.height / 3,
-        padding: const EdgeInsets.only(top: 30),
-        child: SvgPicture.asset(
-          'assets/images/network_error_02.svg',
-        ),
-      );
-}
-
 const _errorText = "Issue connecting to the server.\nEnsure you have a stable internet connection and try again.";
-
-// TODO: Review centering text
-class CenteredText extends StatelessWidget {
-  final String text;
-
-  final TextStyle style;
-
-  const CenteredText({
-    required this.text,
-    required this.style,
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) => Align(
-        alignment: Alignment.center,
-        child: Text(
-          text,
-          style: style,
-          textAlign: TextAlign.center,
-        ),
-      );
-}
