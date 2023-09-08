@@ -6,6 +6,7 @@ import 'package:flutter_golang_yt/features/all_tasks/ui/widgets/middle_section.d
 import 'package:flutter_golang_yt/features/all_tasks/ui/widgets/top_section.dart';
 import 'package:flutter_golang_yt/features/shared/services/services.dart';
 import 'package:flutter_golang_yt/features/shared/ui/base_scaffold.dart';
+import 'package:flutter_golang_yt/features/shared/ui/error/error_view.dart';
 import 'package:provider/provider.dart';
 
 @RoutePage()
@@ -29,13 +30,7 @@ class AllTasksView extends StatelessWidget {
           if (snapshot.hasError) {
             debugPrint("\n\nSnapshoot Error: ${snapshot.error}");
             // TODO: Create Error View
-            return const BaseScaffold(
-              showAppBar: true,
-              title: "Error Page",
-              child: Center(
-                child: Text('ERROR'),
-              ),
-            );
+            return const ErrorView();
           } else if (snapshot.connectionState == ConnectionState.waiting) {
             // TODO: replace with loading screen
             return const BaseScaffold(
