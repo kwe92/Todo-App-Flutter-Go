@@ -3,3 +3,5 @@ typedef Task = ({
   String taskName,
   String taskDetails,
 });
+
+typedef StringValidatorCallback = String? Function(String?);
