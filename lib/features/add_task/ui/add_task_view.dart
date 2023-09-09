@@ -18,6 +18,7 @@ class AddTaskView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final formKey = GlobalKey<FormState>();
     final [taskNameController, taskDetailController] = context.watch<AddTaskViewModel>().getAllControllers();
 
     return BaseScaffold(
@@ -43,54 +44,59 @@ class AddTaskView extends StatelessWidget {
             ),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              child: Column(
-                children: [
-                  AddTaskTextFormField(
-                    maxLines: 1,
-                    controller: taskNameController,
-                    hintText: 'Task Name',
-                  ),
-                  const SizedBox(
-                    height: 36,
-                  ),
-                  AddTaskTextFormField(
-                    maxLines: 5,
-                    controller: taskDetailController,
-                    hintText: 'Task Details',
-                  ),
-                  const SizedBox(
-                    height: 36,
-                  ),
-                  CustomButton(
-                    text: 'Add',
-                    onPressed: () async {
-                      final bool isNotEmpty = context.read<AddTaskViewModel>().isNotEmpty();
-                      final String taskName = taskNameController.text;
-                      final String taskDetail = taskDetailController.text;
+              child: Form(
+                key: formKey,
+                child: Column(
+                  children: [
+                    AddTaskTextFormField(
+                      maxLines: 1,
+                      controller: taskNameController,
+                      hintText: 'Task Name',
+                    ),
+                    const SizedBox(
+                      height: 36,
+                    ),
+                    AddTaskTextFormField(
+                      maxLines: 5,
+                      controller: taskDetailController,
+                      hintText: 'Task Details',
+                    ),
+                    const SizedBox(
+                      height: 36,
+                    ),
+                    CustomButton(
+                      text: 'Add',
+                      onPressed: () async {
+                        final bool isNotEmpty = context.read<AddTaskViewModel>().isNotEmpty();
+                        final String taskName = taskNameController.text;
+                        final String taskDetail = taskDetailController.text;
 
-                      if (isNotEmpty) {
-                        debugPrint('\nAdded Task Name:$taskName\n');
-                        debugPrint('\nAdded Task Details:$taskDetail\n');
-                        await taskService.createTask({"taskName": taskName, "taskDetails": taskDetail});
-                        context.read<AllTasksViewModel>().refresh();
-                        toastService.showSnackBar(
-                          context: context,
-                          height: ScreenSize.getHeight(context) / 8,
-                          backgroundColor: AppColors.grey2,
-                          duration: const Duration(seconds: 1),
-                          content: Center(
-                            child: Text(
-                              'Added Task:\n$taskName',
-                              style: baseTextStyle,
+                        if (formKey.currentState!.validate() && isNotEmpty) {
+                          debugPrint('\nAdded Task Name:$taskName\n');
+                          debugPrint('\nAdded Task Details:$taskDetail\n');
+
+                          // TODO: create a task record instead of using a hash map
+                          await taskService.createTask({"taskName": taskName, "taskDetails": taskDetail});
+                          context.read<AllTasksViewModel>().refresh();
+                          toastService.showSnackBar(
+                            context: context,
+                            height: ScreenSize.getHeight(context) / 8,
+                            backgroundColor: AppColors.grey2,
+                            duration: const Duration(seconds: 1),
+                            content: Center(
+                              child: Text(
+                                'Added Task:\n$taskName',
+                                style: baseTextStyle,
+                              ),
                             ),
-                          ),
-                        );
+                          );
 
-                        context.read<AddTaskViewModel>().clearControllers();
-                      }
-                    },
-                  ),
-                ],
+                          context.read<AddTaskViewModel>().clearControllers();
+                        }
+                      },
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
