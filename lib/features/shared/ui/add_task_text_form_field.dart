@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_golang_yt/app/themes/theme.dart';
-
-// TODO: ADD TextFormField Validators
+import 'package:flutter_golang_yt/features/shared/services/services.dart';
+import 'package:flutter_golang_yt/features/shared/services/utilities/string_service.dart';
 
 class AddTaskTextFormField extends StatelessWidget {
   final TextEditingController controller;
@@ -28,6 +28,12 @@ class AddTaskTextFormField extends StatelessWidget {
           readOnly: readOnly,
           maxLines: maxLines,
           controller: controller,
+          validator: stringService.customValidator(
+            controller.text,
+            configuration: const StringValidatorConfiguration(
+              notEmpty: true,
+            ),
+          ),
           decoration: InputDecoration(hintText: hintText),
         ),
       );
