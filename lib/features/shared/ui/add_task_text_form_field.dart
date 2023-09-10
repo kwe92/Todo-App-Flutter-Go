@@ -8,10 +8,12 @@ class AddTaskTextFormField extends StatelessWidget {
   final String hintText;
   final int maxLines;
   final bool readOnly;
+  final void Function(String?)? onChanged;
 
   const AddTaskTextFormField({
     required this.controller,
     required this.hintText,
+    this.onChanged,
     this.maxLines = 1,
     this.readOnly = false,
     super.key,
@@ -28,6 +30,7 @@ class AddTaskTextFormField extends StatelessWidget {
           readOnly: readOnly,
           maxLines: maxLines,
           controller: controller,
+          onChanged: onChanged,
           validator: stringService.customValidator(
             controller.text,
             configuration: const StringValidatorConfiguration(
