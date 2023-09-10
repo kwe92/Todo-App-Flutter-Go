@@ -19,96 +19,100 @@ class AddTaskView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final formKey = GlobalKey<FormState>();
-    final [taskNameController, taskDetailController] = context.watch<AddTaskViewModel>().getAllControllers();
 
-    return BaseScaffold(
-      // showAppBar: true,
-      title: 'Add Task View',
-      child: Stack(
-        children: [
-          Container(
-            width: double.maxFinite,
-            height: ScreenSize.getHeight(context) / 3.5,
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                fit: BoxFit.cover,
-                image: AssetImage("assets/images/coffee-table4.webp"),
-              ),
-            ),
-          ),
-          Container(
-            width: double.maxFinite,
-            height: double.maxFinite,
-            padding: EdgeInsets.only(
-              top: ScreenSize.getHeight(context) / 2.875,
-            ),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              child: Form(
-                key: formKey,
-                child: Column(
-                  children: [
-                    AddTaskTextFormField(
-                      maxLines: 1,
-                      controller: taskNameController,
-                      hintText: 'Task Name',
-                    ),
-                    const SizedBox(
-                      height: 36,
-                    ),
-                    AddTaskTextFormField(
-                      maxLines: 5,
-                      controller: taskDetailController,
-                      hintText: 'Task Details',
-                    ),
-                    const SizedBox(
-                      height: 36,
-                    ),
-                    CustomButton(
-                      text: 'Add',
-                      onPressed: () async {
-                        final bool isNotEmpty = context.read<AddTaskViewModel>().isNotEmpty();
-                        final String taskName = taskNameController.text;
-                        final String taskDetail = taskDetailController.text;
-
-                        if (formKey.currentState!.validate() && isNotEmpty) {
-                          debugPrint('\nAdded Task Name:$taskName\n');
-                          debugPrint('\nAdded Task Details:$taskDetail\n');
-
-                          // TODO: create a task record instead of using a hash map
-                          await taskService.createTask({"taskName": taskName, "taskDetails": taskDetail});
-                          context.read<AllTasksViewModel>().refresh();
-                          toastService.showSnackBar(
-                            context: context,
-                            height: ScreenSize.getHeight(context) / 8,
-                            backgroundColor: AppColors.grey2,
-                            duration: const Duration(seconds: 1),
-                            content: Center(
-                              child: Text(
-                                'Added Task:\n$taskName',
-                                style: baseTextStyle,
-                              ),
-                            ),
-                          );
-
-                          context.read<AddTaskViewModel>().clearControllers();
-                        }
-                      },
-                    ),
-                  ],
+    return Consumer<AddTaskViewModel>(
+      builder: (context, model, _) => BaseScaffold(
+        // showAppBar: true,
+        title: 'Add Task View',
+        child: Stack(
+          children: [
+            Container(
+              width: double.maxFinite,
+              height: ScreenSize.getHeight(context) / 3.5,
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: AssetImage("assets/images/coffee-table4.webp"),
                 ),
               ),
             ),
-          ),
-          Container(
-            height: ScreenSize.getHeight(context) / 12,
-            padding: const EdgeInsets.only(left: 12),
-            child: BackArrowIcon(
-              color: AppColors.green0,
-              onTap: () => appRouter.pop(),
+            Container(
+              width: double.maxFinite,
+              height: double.maxFinite,
+              padding: EdgeInsets.only(
+                top: ScreenSize.getHeight(context) / 2.875,
+              ),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                child: Form(
+                  key: formKey,
+                  child: Column(
+                    children: [
+                      AddTaskTextFormField(
+                        maxLines: 1,
+                        controller: model.taskNameController,
+                        hintText: 'Task Name',
+                        onChanged: model.setTaskName,
+                      ),
+                      const SizedBox(
+                        height: 36,
+                      ),
+                      AddTaskTextFormField(
+                        maxLines: 5,
+                        controller: model.taskDetailController,
+                        hintText: 'Task Details',
+                      ),
+                      const SizedBox(
+                        height: 36,
+                      ),
+                      CustomButton(
+                        text: 'Add',
+                        onPressed: () async {
+                          final bool isNotEmpty = model.isNotEmpty();
+                          final String taskName = model.taskNameController.text;
+                          final String taskDetail = model.taskDetailController.text;
+
+                          if (formKey.currentState!.validate() && isNotEmpty) {
+                            debugPrint('\nAdded Task Name:$taskName\n');
+                            debugPrint('\nAdded Task Details:$taskDetail\n');
+
+                            await taskService.createTask({"taskName": taskName, "taskDetails": taskDetail});
+                            context.read<AllTasksViewModel>().refresh();
+                            toastService.showSnackBar(
+                              context: context,
+                              height: ScreenSize.getHeight(context) / 8,
+                              backgroundColor: AppColors.grey2,
+                              duration: const Duration(seconds: 1),
+                              content: Center(
+                                child: Text(
+                                  'Added Task:\n$taskName',
+                                  style: baseTextStyle,
+                                ),
+                              ),
+                            );
+
+                            model.clearControllers();
+                          }
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+              ),
             ),
-          ),
-        ],
+            Container(
+              height: ScreenSize.getHeight(context) / 12,
+              padding: const EdgeInsets.only(left: 12),
+              child: BackArrowIcon(
+                color: AppColors.green0,
+                onTap: () {
+                  model.clearControllers();
+                  appRouter.pop();
+                },
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

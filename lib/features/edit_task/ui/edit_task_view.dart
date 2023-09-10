@@ -13,8 +13,6 @@ import 'package:flutter_golang_yt/features/shared/ui/base_scaffold.dart';
 import 'package:flutter_golang_yt/features/shared/utility/get_screen_size.dart';
 import 'package:provider/provider.dart';
 
-// TODO: Use Consumer2 instead of calling context multiple times
-
 @RoutePage()
 class EditTaskView extends StatelessWidget {
   final TaskModel task;
@@ -25,6 +23,8 @@ class EditTaskView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final formKey = GlobalKey<FormState>();
+
     context.read<EditTaskViewModel>().loadControllers(task);
 
     final [taskNameController, taskDetailController] = context.read<EditTaskViewModel>().getAllControllers();
@@ -52,63 +52,67 @@ class EditTaskView extends StatelessWidget {
             ),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              child: Column(
-                children: [
-                  AddTaskTextFormField(
-                    maxLines: 1,
-                    controller: taskNameController,
-                    hintText: 'Task Name',
-                  ),
-                  const SizedBox(
-                    height: 36,
-                  ),
-                  AddTaskTextFormField(
-                    maxLines: 5,
-                    controller: taskDetailController,
-                    hintText: 'Task Details',
-                  ),
-                  const SizedBox(
-                    height: 36,
-                  ),
-                  CustomButton(
-                    text: 'Edit',
-                    onPressed: () async {
-                      final bool isNotEmpty = context.read<EditTaskViewModel>().isNotEmpty();
+              child: Form(
+                key: formKey,
+                child: Column(
+                  children: [
+                    AddTaskTextFormField(
+                      maxLines: 1,
+                      controller: taskNameController,
+                      hintText: 'Task Name',
+                    ),
+                    const SizedBox(
+                      height: 36,
+                    ),
+                    AddTaskTextFormField(
+                      maxLines: 5,
+                      controller: taskDetailController,
+                      hintText: 'Task Details',
+                    ),
+                    const SizedBox(
+                      height: 36,
+                    ),
+                    CustomButton(
+                      text: 'Edit',
+                      onPressed: () async {
+                        final bool isNotEmpty = context.read<EditTaskViewModel>().isNotEmpty();
 
-                      final String taskName = taskNameController.text;
+                        final String taskName = taskNameController.text;
 
-                      final String taskDetail = taskDetailController.text;
+                        final String taskDetail = taskDetailController.text;
 
-                      if (isNotEmpty) {
-                        debugPrint('\nModified Task Name:$taskName\n');
+                        if (formKey.currentState!.validate() && isNotEmpty) {
+                          debugPrint('\nModified Task Name:$taskName\n');
 
-                        debugPrint('\nModified Task Details:$taskDetail\n');
+                          debugPrint('\nModified Task Details:$taskDetail\n');
 
-                        await taskService.updateTask({
-                          "id": task.id.toString(),
-                          "taskName": taskName,
-                          "taskDetails": taskDetail,
-                        });
-                        context.read<EditTaskViewModel>().clearControllers();
+                          await taskService.updateTask({
+                            "id": task.id.toString(),
+                            "taskName": taskName,
+                            "taskDetails": taskDetail,
+                          });
+                          context.read<EditTaskViewModel>().clearControllers();
 
-                        context.read<AllTasksViewModel>().refresh();
+                          context.read<AllTasksViewModel>().refresh();
 
-                        toastService.showSnackBar(
-                          context: context,
-                          height: ScreenSize.getHeight(context) / 8,
-                          backgroundColor: AppColors.grey2,
-                          duration: const Duration(seconds: 1),
-                          content: Center(
-                            child: Text(
-                              'Modified Task:\n$taskName',
-                              style: baseTextStyle,
+                          toastService.showSnackBar(
+                            context: context,
+                            height: ScreenSize.getHeight(context) / 8,
+                            backgroundColor: AppColors.grey2,
+                            duration: const Duration(seconds: 1),
+                            content: Center(
+                              child: Text(
+                                'Modified Task:\n$taskName',
+                                style: baseTextStyle,
+                              ),
                             ),
-                          ),
-                        );
-                      }
-                    },
-                  ),
-                ],
+                          );
+                          appRouter.pop();
+                        }
+                      },
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
@@ -118,7 +122,6 @@ class EditTaskView extends StatelessWidget {
             child: BackArrowIcon(
               onTap: () {
                 context.read<EditTaskViewModel>().clearControllers();
-
                 appRouter.pop();
               },
             ),
