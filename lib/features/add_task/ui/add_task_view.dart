@@ -76,7 +76,6 @@ class AddTaskView extends StatelessWidget {
                             debugPrint('\nAdded Task Name:$taskName\n');
                             debugPrint('\nAdded Task Details:$taskDetail\n');
 
-                            // TODO: create a task record instead of using a hash map
                             await taskService.createTask({"taskName": taskName, "taskDetails": taskDetail});
                             context.read<AllTasksViewModel>().refresh();
                             toastService.showSnackBar(
