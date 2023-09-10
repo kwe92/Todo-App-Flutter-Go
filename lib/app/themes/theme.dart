@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_golang_yt/app/colors/app_colors.dart';
 
@@ -7,19 +8,23 @@ class AppTheme {
   const AppTheme._();
 
   /// getTheme returns the ThemeData to style the entire application.
-
-  static ThemeData getTheme() {
-    return ThemeData(
-      useMaterial3: true,
-      outlinedButtonTheme: primaryOutlinedButtonTheme,
-      inputDecorationTheme: singleLineInputDecorationTheme,
-      scaffoldBackgroundColor:
-          Colors.white, // the base background color of the Scaffold is off-white if you look hard enough you can see this
-    );
-  }
+  static ThemeData getTheme() => ThemeData(
+        useMaterial3: true,
+        outlinedButtonTheme: primaryOutlinedButtonTheme,
+        inputDecorationTheme: singleLineInputDecorationTheme,
+        // the base background color of the Scaffold is off-white
+        scaffoldBackgroundColor: Colors.white,
+        textSelectionTheme: TextSelectionThemeData(
+          cursorColor: AppColors.mainColor,
+          selectionColor: AppColors.mainColor.withOpacity(0.25),
+        ),
+        // change selectionHandleColor on IOS
+        cupertinoOverrideTheme: const CupertinoThemeData(
+          primaryColor: AppColors.mainColor,
+        ),
+      );
 }
 
-///
 const _singleLineBorder = OutlineInputBorder(
   borderSide: BorderSide.none,
   borderRadius: BorderRadius.all(
@@ -34,7 +39,6 @@ final _multiLineInputBorder = _singleLineBorder.copyWith(
 );
 
 /// style for single line TextFormFields.
-
 const singleLineInputDecorationTheme = InputDecorationTheme(
   contentPadding: EdgeInsets.symmetric(
     horizontal: 28.0,
@@ -46,12 +50,20 @@ const singleLineInputDecorationTheme = InputDecorationTheme(
   outlineBorder: BorderSide.none,
   enabledBorder: _singleLineBorder,
   focusedBorder: _singleLineBorder,
+  errorBorder: _singleLineBorder,
+  focusedErrorBorder: _singleLineBorder,
+  errorStyle: TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w600,
+  ),
 );
 
-/// style for single line TextFormFields.
+/// style for multi line TextFormFields.
 final multiLineInputDecorationTheme = singleLineInputDecorationTheme.copyWith(
   enabledBorder: _multiLineInputBorder,
   focusedBorder: _multiLineInputBorder,
+  errorBorder: _multiLineInputBorder,
+  focusedErrorBorder: _multiLineInputBorder,
 );
 
 final primaryOutlinedButtonTheme = OutlinedButtonThemeData(
