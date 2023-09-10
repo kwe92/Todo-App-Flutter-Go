@@ -26,6 +26,22 @@ class TextControllerViewModel extends ChangeNotifier {
     // TODO: figure out why this listener causes an error | its not needed though
     // notifyListeners();
   }
+
+  // TODO: Figure out why no rebuild is occuring
+
+  void setTaskName(String? value) {
+    if (value != null) {
+      taskNameController.text = value;
+    }
+    notifyListeners();
+  }
+
+  void setTaskDetail(String? value) {
+    if (value != null) {
+      taskDetailController.text = value;
+    }
+    notifyListeners();
+  }
 }
 
 // ChangeNotifier
