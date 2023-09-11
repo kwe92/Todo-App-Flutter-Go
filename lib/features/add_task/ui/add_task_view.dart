@@ -52,7 +52,8 @@ class AddTaskView extends StatelessWidget {
                         maxLines: 1,
                         controller: model.taskNameController,
                         hintText: 'Task Name',
-                        onChanged: model.setTaskName,
+                        // TODO: Fix, not working as intended
+                        // onChanged: model.setTaskName,
                       ),
                       const SizedBox(
                         height: 36,
