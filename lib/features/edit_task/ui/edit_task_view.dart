@@ -88,8 +88,8 @@ class EditTaskView extends StatelessWidget {
 
                           await taskService.updateTask({
                             "id": task.id.toString(),
-                            "taskName": taskName,
-                            "taskDetails": taskDetail,
+                            "task_name": taskName,
+                            "task_details": taskDetail,
                           });
                           context.read<EditTaskViewModel>().clearControllers();
 
