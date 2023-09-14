@@ -77,7 +77,7 @@ class AddTaskView extends StatelessWidget {
                             debugPrint('\nAdded Task Name:$taskName\n');
                             debugPrint('\nAdded Task Details:$taskDetail\n');
 
-                            await taskService.createTask({"taskName": taskName, "taskDetails": taskDetail});
+                            await taskService.createTask({"task_name": taskName, "task_details": taskDetail});
                             context.read<AllTasksViewModel>().refresh();
                             toastService.showSnackBar(
                               context: context,
