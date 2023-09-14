@@ -8,14 +8,14 @@ part of 'task_model.dart';
 
 TaskModel _$TaskModelFromJson(Map<String, dynamic> json) => TaskModel(
       id: json['id'] as String,
-      taskName: json['taskName'] as String,
-      taskDetails: json['taskDetails'] as String,
-      createdDate: json['createdDate'] as String,
+      taskName: json['task_name'] as String,
+      taskDetails: json['task_details'] as String,
+      createdDate: json['created_date'] as String,
     );
 
 Map<String, dynamic> _$TaskModelToJson(TaskModel instance) => <String, dynamic>{
       'id': instance.id,
-      'taskName': instance.taskName,
-      'taskDetails': instance.taskDetails,
-      'createdDate': instance.createdDate,
+      'task_name': instance.taskName,
+      'task_details': instance.taskDetails,
+      'created_date': instance.createdDate,
     };
