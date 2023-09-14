@@ -5,7 +5,7 @@ import 'app_router.gr.dart';
 
 //   - you must have the build_runner package added as a dependecy
 
-//   - flutter packages pub run build_runner build
+//   - dart run build_runner build
 
 @AutoRouterConfig(replaceInRouteName: 'View,Route')
 class AppRouter extends $AppRouter {
