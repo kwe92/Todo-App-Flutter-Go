@@ -10,13 +10,18 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i7;
 import 'package:flutter/material.dart' as _i9;
-import 'package:flutter_golang_yt/features/add_task/ui/add_task_view.dart' as _i1;
-import 'package:flutter_golang_yt/features/all_tasks/ui/all_tasks_view.dart' as _i2;
-import 'package:flutter_golang_yt/features/edit_task/ui/edit_task_view.dart' as _i3;
+import 'package:flutter_golang_yt/features/add_task/ui/add_task_view.dart'
+    as _i1;
+import 'package:flutter_golang_yt/features/all_tasks/ui/all_tasks_view.dart'
+    as _i2;
+import 'package:flutter_golang_yt/features/edit_task/ui/edit_task_view.dart'
+    as _i3;
 import 'package:flutter_golang_yt/features/home/ui/home_view.dart' as _i4;
-import 'package:flutter_golang_yt/features/shared/models/task_model.dart' as _i8;
+import 'package:flutter_golang_yt/features/shared/models/task_model.dart'
+    as _i8;
 import 'package:flutter_golang_yt/features/shared/ui/splash_view.dart' as _i5;
-import 'package:flutter_golang_yt/features/standalone/ui/standalone_view.dart' as _i6;
+import 'package:flutter_golang_yt/features/standalone/ui/standalone_view.dart'
+    as _i6;
 
 abstract class $AppRouter extends _i7.RootStackRouter {
   $AppRouter({super.navigatorKey});
@@ -52,7 +57,8 @@ abstract class $AppRouter extends _i7.RootStackRouter {
       );
     },
     SplashRoute.name: (routeData) {
-      final args = routeData.argsAs<SplashRouteArgs>(orElse: () => const SplashRouteArgs());
+      final args = routeData.argsAs<SplashRouteArgs>(
+          orElse: () => const SplashRouteArgs());
       return _i7.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: _i5.SplashView(
@@ -120,7 +126,8 @@ class EditTaskRoute extends _i7.PageRouteInfo<EditTaskRouteArgs> {
 
   static const String name = 'EditTaskRoute';
 
-  static const _i7.PageInfo<EditTaskRouteArgs> page = _i7.PageInfo<EditTaskRouteArgs>(name);
+  static const _i7.PageInfo<EditTaskRouteArgs> page =
+      _i7.PageInfo<EditTaskRouteArgs>(name);
 }
 
 class EditTaskRouteArgs {
@@ -171,7 +178,8 @@ class SplashRoute extends _i7.PageRouteInfo<SplashRouteArgs> {
 
   static const String name = 'SplashRoute';
 
-  static const _i7.PageInfo<SplashRouteArgs> page = _i7.PageInfo<SplashRouteArgs>(name);
+  static const _i7.PageInfo<SplashRouteArgs> page =
+      _i7.PageInfo<SplashRouteArgs>(name);
 }
 
 class SplashRouteArgs {
@@ -208,7 +216,8 @@ class StandAloneRoute extends _i7.PageRouteInfo<StandAloneRouteArgs> {
 
   static const String name = 'StandAloneRoute';
 
-  static const _i7.PageInfo<StandAloneRouteArgs> page = _i7.PageInfo<StandAloneRouteArgs>(name);
+  static const _i7.PageInfo<StandAloneRouteArgs> page =
+      _i7.PageInfo<StandAloneRouteArgs>(name);
 }
 
 class StandAloneRouteArgs {

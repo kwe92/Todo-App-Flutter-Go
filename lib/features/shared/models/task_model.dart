@@ -1,8 +1,19 @@
+import 'package:json_annotation/json_annotation.dart';
+part 'task_model.g.dart';
+
+@JsonSerializable()
 class TaskModel {
-  final int id;
+  final String id;
+
+  @JsonKey(name: 'task_name')
   final String taskName;
+
+  @JsonKey(name: 'task_details')
   final String taskDetails;
+
+  @JsonKey(name: 'created_date')
   final String createdDate;
+
   const TaskModel({
     required this.id,
     required this.taskName,
@@ -10,19 +21,7 @@ class TaskModel {
     required this.createdDate,
   });
 
-  Map<String, dynamic> toJson() => {
-        "id": id.toString(),
-        "taskName": taskName,
-        "taskDetails": taskDetails,
-        "createdDate": createdDate,
-      };
+  factory TaskModel.fromJson(Map<String, dynamic> json) => _$TaskModelFromJson(json);
 
-  TaskModel.fromJson(Map<String, dynamic> json)
-      : id = int.parse(json['id']),
-        taskName = json['taskName'],
-        taskDetails = json['taskDetails'],
-        createdDate = json['createdDate'];
-
-  @override
-  String toString() => 'TaskModel(id: $id, taskName: $taskName, taskDetails: $taskDetails, createdDate: $createdDate)';
+  Map<String, dynamic> toJson() => _$TaskModelToJson(this);
 }
