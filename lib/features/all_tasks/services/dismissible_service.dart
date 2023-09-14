@@ -48,7 +48,7 @@ class DismissibleService {
   }
 
   void deleteTask(BuildContext context, TaskModel task) async {
-    await taskService.deleteTask(task.id);
+    await taskService.deleteTask(int.parse(task.id));
 
     debugPrint('\nTASK DELETED: $task');
 
