@@ -40,11 +40,19 @@ Why Clean Architecture?
 
 ## Tools/Libraries (Packages)
 
-- get_it: a service locator (also a runtime dependency injector)
+- get_it: service locator (also a runtime dependency injector).
 
-- Provider: a flutter state management (You can use any kind of state management you prefer)
+- Provider: flutter state management (You can use any kind of state management you prefer).
 
-- auto_route and auto_route_generator: easily generated routes and sending data between views
+- auto_route and auto_route_generator: easily generated routes and sending data between views.
+
+- json_serializable: provides Dart Build System builders for handling JSON.
+
+- json_annotation: defines annotations used by json_serializable to create code for JSON serialization and deserialization.
+
+- flutter_svg: draw SVG files using Flutter.
+
+- http: Future-based library for making HTTP requests.
 
 ## Screenshots
 
