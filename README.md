@@ -61,3 +61,9 @@ Why Clean Architecture?
 ![Screenshot 2023-09-10 at 7 40 25 PM](https://github.com/kwe92/Todo-App-Flutter-Go/assets/47009536/fdb14418-a87b-4e2b-832a-c67c63f7b564)
 
 ![Screenshot 2023-09-10 at 7 40 43 PM](https://github.com/kwe92/Todo-App-Flutter-Go/assets/47009536/a26f6ff6-e63c-4232-8e7d-76f86f8c220f)
+
+<img width="444" alt="Screenshot 2023-09-14 at 7 29 52 PM" src="https://github.com/kwe92/Todo-App-Flutter-Go/assets/47009536/c3a0266a-42f9-465e-8873-b182cf3f161d">
+
+<img width="453" alt="Screenshot 2023-09-14 at 7 31 05 PM" src="https://github.com/kwe92/Todo-App-Flutter-Go/assets/47009536/2da0b3d3-b9e8-4a3f-8f14-5c4c7c91aee5">
+
+
