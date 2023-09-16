@@ -31,9 +31,11 @@ class TaskService extends ApiService {
   Future<List<TaskModel>> getAllTasks() async {
     final http.Response response = await get(EndPoint.gettasks.path);
 
-    final List<dynamic> tasks = jsonDecode(response.body);
+    final Map tasks = jsonDecode(response.body);
 
-    final taskList = <TaskModel>[for (Map<String, dynamic> task in tasks) TaskModel.fromJson(task)];
+    final tasksToList = tasks.values.toList();
+
+    final taskList = <TaskModel>[for (Map<String, dynamic> task in tasksToList) TaskModel.fromJson(task)];
 
     _allTasks = taskList;
 
@@ -64,9 +66,11 @@ class TaskService extends ApiService {
       body: jsonEncode(task),
     );
 
-    final List<dynamic> tasks = jsonDecode(response.body);
+    final Map tasks = jsonDecode(response.body);
 
-    final taskList = <TaskModel>[for (Map<String, dynamic> task in tasks) TaskModel.fromJson(task)];
+    final tasksToList = tasks.values.toList();
+
+    final taskList = <TaskModel>[for (Map<String, dynamic> task in tasksToList) TaskModel.fromJson(task)];
 
     _allTasks = taskList;
 
@@ -80,9 +84,11 @@ class TaskService extends ApiService {
       body: jsonEncode(task),
     );
 
-    final List<dynamic> tasks = jsonDecode(response.body);
+    final Map tasks = jsonDecode(response.body);
 
-    final taskList = <TaskModel>[for (Map<String, dynamic> task in tasks) TaskModel.fromJson(task)];
+    final tasksToList = tasks.values.toList();
+
+    final taskList = <TaskModel>[for (Map<String, dynamic> task in tasksToList) TaskModel.fromJson(task)];
 
     _allTasks = taskList;
 
@@ -95,9 +101,11 @@ class TaskService extends ApiService {
       EndPoint.delete.path + taskId.toString(),
     );
 
-    final List<dynamic> tasks = jsonDecode(response.body);
+    final Map tasks = jsonDecode(response.body);
 
-    final taskList = <TaskModel>[for (Map<String, dynamic> task in tasks) TaskModel.fromJson(task)];
+    final tasksToList = tasks.values.toList();
+
+    final taskList = <TaskModel>[for (Map<String, dynamic> task in tasksToList) TaskModel.fromJson(task)];
 
     _allTasks = taskList;
 
