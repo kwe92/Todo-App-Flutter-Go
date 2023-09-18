@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:entry/entry.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_golang_yt/app/router/app_router.gr.dart';
 import 'package:flutter_golang_yt/features/home/ui/widgets/home_title.dart';
@@ -26,16 +27,19 @@ class HomeView extends StatelessWidget {
           height: double.maxFinite,
           width: double.maxFinite,
           decoration: _backgroundImage,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              const HomeTitle(),
-              SizedBox(
-                height: ScreenSize.getHeight(context) / 2.5,
-              ),
-              const Spacer(),
-              ..._buttons
-            ],
+          child: Entry.opacity(
+            duration: const Duration(seconds: 2),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                const HomeTitle(),
+                SizedBox(
+                  height: ScreenSize.getHeight(context) / 2.5,
+                ),
+                const Spacer(),
+                ..._buttons
+              ],
+            ),
           ),
         ),
       );
