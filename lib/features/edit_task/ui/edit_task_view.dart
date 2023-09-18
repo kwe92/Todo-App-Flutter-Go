@@ -1,3 +1,4 @@
+import 'package:entry/entry.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_golang_yt/app/colors/app_colors.dart';
@@ -32,101 +33,104 @@ class EditTaskView extends StatelessWidget {
     return BaseScaffold(
       // showAppBar: true,
       title: 'Edit Task View',
-      child: Stack(
-        children: [
-          Container(
-            width: double.maxFinite,
-            height: ScreenSize.getHeight(context) / 3.5,
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                fit: BoxFit.cover,
-                image: AssetImage("assets/images/coffee-table6.avif"),
-              ),
-            ),
-          ),
-          Container(
-            width: double.maxFinite,
-            height: double.maxFinite,
-            padding: EdgeInsets.only(
-              top: ScreenSize.getHeight(context) / 2.875,
-            ),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              child: Form(
-                key: formKey,
-                child: Column(
-                  children: [
-                    AddTaskTextFormField(
-                      maxLines: 1,
-                      controller: taskNameController,
-                      hintText: 'Task Name',
-                    ),
-                    const SizedBox(
-                      height: 36,
-                    ),
-                    AddTaskTextFormField(
-                      maxLines: 5,
-                      controller: taskDetailController,
-                      hintText: 'Task Details',
-                    ),
-                    const SizedBox(
-                      height: 36,
-                    ),
-                    CustomButton(
-                      text: 'Edit',
-                      onPressed: () async {
-                        final bool isNotEmpty = context.read<EditTaskViewModel>().isNotEmpty();
-
-                        final String taskName = taskNameController.text;
-
-                        final String taskDetail = taskDetailController.text;
-
-                        if (formKey.currentState!.validate() && isNotEmpty) {
-                          debugPrint('\nModified Task Name:$taskName\n');
-
-                          debugPrint('\nModified Task Details:$taskDetail\n');
-
-                          await taskService.updateTask({
-                            "id": task.id.toString(),
-                            "task_name": taskName,
-                            "task_details": taskDetail,
-                          });
-                          context.read<EditTaskViewModel>().clearControllers();
-
-                          context.read<AllTasksViewModel>().refresh();
-
-                          toastService.showSnackBar(
-                            context: context,
-                            height: ScreenSize.getHeight(context) / 8,
-                            backgroundColor: AppColors.grey2,
-                            duration: const Duration(seconds: 1),
-                            content: Center(
-                              child: Text(
-                                'Modified Task:\n$taskName',
-                                style: baseTextStyle,
-                              ),
-                            ),
-                          );
-                          appRouter.pop();
-                        }
-                      },
-                    ),
-                  ],
+      child: Entry.opacity(
+        duration: const Duration(seconds: 2),
+        child: Stack(
+          children: [
+            Container(
+              width: double.maxFinite,
+              height: ScreenSize.getHeight(context) / 3.5,
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: AssetImage("assets/images/coffee-table6.avif"),
                 ),
               ),
             ),
-          ),
-          Container(
-            height: ScreenSize.getHeight(context) / 12,
-            padding: const EdgeInsets.only(left: 12),
-            child: BackArrowIcon(
-              onTap: () {
-                context.read<EditTaskViewModel>().clearControllers();
-                appRouter.pop();
-              },
+            Container(
+              width: double.maxFinite,
+              height: double.maxFinite,
+              padding: EdgeInsets.only(
+                top: ScreenSize.getHeight(context) / 2.875,
+              ),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                child: Form(
+                  key: formKey,
+                  child: Column(
+                    children: [
+                      AddTaskTextFormField(
+                        maxLines: 1,
+                        controller: taskNameController,
+                        hintText: 'Task Name',
+                      ),
+                      const SizedBox(
+                        height: 36,
+                      ),
+                      AddTaskTextFormField(
+                        maxLines: 5,
+                        controller: taskDetailController,
+                        hintText: 'Task Details',
+                      ),
+                      const SizedBox(
+                        height: 36,
+                      ),
+                      CustomButton(
+                        text: 'Edit',
+                        onPressed: () async {
+                          final bool isNotEmpty = context.read<EditTaskViewModel>().isNotEmpty();
+
+                          final String taskName = taskNameController.text;
+
+                          final String taskDetail = taskDetailController.text;
+
+                          if (formKey.currentState!.validate() && isNotEmpty) {
+                            debugPrint('\nModified Task Name:$taskName\n');
+
+                            debugPrint('\nModified Task Details:$taskDetail\n');
+
+                            await taskService.updateTask({
+                              "id": task.id.toString(),
+                              "task_name": taskName,
+                              "task_details": taskDetail,
+                            });
+                            context.read<EditTaskViewModel>().clearControllers();
+
+                            context.read<AllTasksViewModel>().refresh();
+
+                            toastService.showSnackBar(
+                              context: context,
+                              height: ScreenSize.getHeight(context) / 8,
+                              backgroundColor: AppColors.grey2,
+                              duration: const Duration(seconds: 1),
+                              content: Center(
+                                child: Text(
+                                  'Modified Task:\n$taskName',
+                                  style: baseTextStyle,
+                                ),
+                              ),
+                            );
+                            appRouter.pop();
+                          }
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+              ),
             ),
-          ),
-        ],
+            Container(
+              height: ScreenSize.getHeight(context) / 12,
+              padding: const EdgeInsets.only(left: 12),
+              child: BackArrowIcon(
+                onTap: () {
+                  context.read<EditTaskViewModel>().clearControllers();
+                  appRouter.pop();
+                },
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
