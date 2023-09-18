@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:entry/entry.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_golang_yt/features/all_tasks/ui/all_tasks_view_model.dart';
 import 'package:flutter_golang_yt/features/all_tasks/ui/widgets/dismissible_task.dart';
@@ -18,14 +19,7 @@ class AllTasksView extends StatelessWidget {
     return BaseScaffold(
       title: 'All Tasks View',
       child: FutureBuilder(
-        future:
-            // TODO: remove anonymous delay
-            () async {
-          await Future.delayed(
-            const Duration(seconds: 0),
-          );
-          return taskService.getAllTasks();
-        }(),
+        future: taskService.getAllTasks(),
         builder: (context, snapshot) {
           if (snapshot.hasError) {
             debugPrint("\n\nSnapshoot Error: ${snapshot.error}");
@@ -58,8 +52,11 @@ class AllTasksView extends StatelessWidget {
                       taskCount: taskList.length,
                     ),
                     Flexible(
-                      child: ListView(
-                        children: taskList,
+                      child: Entry.opacity(
+                        duration: const Duration(seconds: 3, milliseconds: 500),
+                        child: ListView(
+                          children: taskList,
+                        ),
                       ),
                     ),
                   ],
