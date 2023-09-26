@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_golang_yt/app/themes/font.dart';
 import 'package:flutter_golang_yt/app/themes/theme.dart';
 import 'package:flutter_golang_yt/features/shared/services/services.dart';
 import 'package:flutter_golang_yt/features/shared/services/utilities/string_service.dart';
@@ -27,6 +28,9 @@ class AddTaskTextFormField extends StatelessWidget {
                 inputDecorationTheme: multiLineInputDecorationTheme,
               ),
         child: TextFormField(
+          style: AppFont.font(
+            const TextStyle(fontSize: 18),
+          ),
           readOnly: readOnly,
           maxLines: maxLines,
           controller: controller,
