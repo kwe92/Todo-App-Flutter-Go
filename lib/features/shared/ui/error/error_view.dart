@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_golang_yt/app/colors/app_colors.dart';
+import 'package:flutter_golang_yt/app/themes/font.dart';
 import 'package:flutter_golang_yt/features/shared/ui/centered_text_widget.dart';
 import 'package:flutter_golang_yt/features/shared/ui/error/widgets/error_button.dart';
 import 'package:flutter_golang_yt/features/shared/ui/error/widgets/error_image.dart';
@@ -16,32 +17,34 @@ class ErrorView extends StatelessWidget {
           top: 48,
           right: 24,
         ),
-        child: const Column(
+        child: Column(
           children: [
-            ErrorImage(),
-            SizedBox(height: 24),
-            Text(
-              "Network Issues",
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.w800,
-              ),
-            ),
-            SizedBox(
+            const ErrorImage(),
+            const SizedBox(height: 24),
+            Text("Network Issues",
+                style: AppFont.font(
+                  const TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.w800,
+                  ),
+                )),
+            const SizedBox(
               height: 8,
             ),
             CenteredText(
               text: _errorText,
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.w500,
-                height: 1.5,
+              style: AppFont.font(
+                const TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w500,
+                  height: 1.5,
+                ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 78,
             ),
-            ErrorButton(),
+            const ErrorButton(),
           ],
         ),
       );
