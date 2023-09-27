@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_golang_yt/app/colors/app_colors.dart';
+import 'package:flutter_golang_yt/app/themes/font.dart';
 
 /// AppTheme abstracts the theme of the application.
 
@@ -39,8 +40,8 @@ final _multiLineInputBorder = _singleLineBorder.copyWith(
 );
 
 /// style for single line TextFormFields.
-const singleLineInputDecorationTheme = InputDecorationTheme(
-  contentPadding: EdgeInsets.symmetric(
+final singleLineInputDecorationTheme = InputDecorationTheme(
+  contentPadding: const EdgeInsets.symmetric(
     horizontal: 28.0,
     vertical: 25.0,
   ),
@@ -52,9 +53,11 @@ const singleLineInputDecorationTheme = InputDecorationTheme(
   focusedBorder: _singleLineBorder,
   errorBorder: _singleLineBorder,
   focusedErrorBorder: _singleLineBorder,
-  errorStyle: TextStyle(
-    fontSize: 14,
-    fontWeight: FontWeight.w600,
+  errorStyle: AppFont.font(
+    const TextStyle(
+      fontSize: 14,
+      fontWeight: FontWeight.w600,
+    ),
   ),
 );
 
@@ -74,13 +77,16 @@ final secondaryOutlinedButtonTheme = OutlinedButtonThemeData(
   style: secondaryButtonStyle,
 );
 
-const baseTextStyle = TextStyle(
-  fontSize: 20,
-  fontWeight: FontWeight.w500,
+final baseTextStyle = AppFont.font(
+  const TextStyle(
+    fontWeight: FontWeight.w600,
+    fontSize: 24,
+  ),
 );
 
 final mediumTextStyle = baseTextStyle.copyWith(
   color: Colors.blueGrey,
+  fontSize: 18,
 );
 
 final primaryButtonTextStyle = baseTextStyle.copyWith(

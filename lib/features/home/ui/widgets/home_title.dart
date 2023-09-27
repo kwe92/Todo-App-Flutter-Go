@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_golang_yt/app/colors/app_colors.dart';
+import 'package:flutter_golang_yt/app/themes/font.dart';
 
 class HomeTitle extends StatelessWidget {
   const HomeTitle({super.key});
@@ -7,23 +8,25 @@ class HomeTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) => RichText(
         maxLines: 2,
-        text: const TextSpan(
+        text: TextSpan(
           text: 'Hello',
           children: [
             TextSpan(
               text: '\nstart your beautiful day.',
-              style: TextStyle(
-                // color: AppColors.smallTextColor,
-                color: AppColors.smallTextColor,
-
-                fontSize: 16,
+              style: AppFont.font(
+                const TextStyle(
+                  color: AppColors.smallTextColor,
+                  fontSize: 16,
+                ),
               ),
             ),
           ],
-          style: TextStyle(
-            color: AppColors.mainColor,
-            fontSize: 60,
-            fontWeight: FontWeight.w600,
+          style: AppFont.font(
+            const TextStyle(
+              color: AppColors.mainColor,
+              fontSize: 60,
+              fontWeight: FontWeight.w600,
+            ),
           ),
         ),
       );
