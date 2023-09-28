@@ -14,11 +14,15 @@ class TaskModel {
   @JsonKey(name: 'created_date')
   final String createdDate;
 
+  @JsonKey(name: 'modified_date')
+  final String modifiedDate;
+
   const TaskModel({
     required this.id,
     required this.taskName,
     required this.taskDetails,
     required this.createdDate,
+    required this.modifiedDate,
   });
 
   factory TaskModel.fromJson(Map<String, dynamic> json) => _$TaskModelFromJson(json);
