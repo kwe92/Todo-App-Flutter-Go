@@ -11,6 +11,7 @@ TaskModel _$TaskModelFromJson(Map<String, dynamic> json) => TaskModel(
       taskName: json['task_name'] as String,
       taskDetails: json['task_details'] as String,
       createdDate: json['created_date'] as String,
+      modifiedDate: json['modified_date'] as String,
     );
 
 Map<String, dynamic> _$TaskModelToJson(TaskModel instance) => <String, dynamic>{
@@ -18,4 +19,5 @@ Map<String, dynamic> _$TaskModelToJson(TaskModel instance) => <String, dynamic>{
       'task_name': instance.taskName,
       'task_details': instance.taskDetails,
       'created_date': instance.createdDate,
+      'modified_date': instance.modifiedDate,
     };
