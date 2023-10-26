@@ -18,11 +18,12 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) => BaseScaffold(
         title: 'Home View',
         child: Container(
-          padding: const EdgeInsets.only(
+          padding: EdgeInsets.only(
             left: 20,
             top: 46,
             right: 20,
-            bottom: 76,
+            bottom: ScreenSize.getHeight(context) / 12,
+            // bottom: 76,
           ),
           height: double.maxFinite,
           width: double.maxFinite,
